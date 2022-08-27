@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "futbet-3921b"
+  },
+  "targets": {
+    "futbet-3921b": {
+      "hosting": {
+        "futbet": [
+          "futbet-3921b"
+        ]
+      }
+    }
+  }
+}
