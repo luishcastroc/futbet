@@ -3,3 +3,39 @@
 @tailwind utilities;
 
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Font size */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 0.875rem;
+}
+
+/* Stylistic alternates for Inter */
+body {
+  font-feature-settings: 'salt';
+}
+
+/* Better spacing and border for horizontal rule */
+hr {
+  margin: 32px 0;
+  border-bottom-width: 1px;
+}
+
+/* Make images and videos to take up all the available space */
+img {
+  width: 100%;
+  vertical-align: top;
+}
