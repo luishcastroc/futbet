@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/futbet",
         "index": "apps/futbet/src/index.html",
@@ -18,7 +20,10 @@
           "apps/futbet/src/assets",
           "apps/futbet/src/assets/favicon"
         ],
-        "styles": ["apps/futbet/src/styles.scss"],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/futbet/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -75,12 +80,17 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/futbet/**/*.ts", "apps/futbet/**/*.html"]
+        "lintFilePatterns": [
+          "apps/futbet/**/*.ts",
+          "apps/futbet/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/futbet"],
+      "outputs": [
+        "coverage/apps/futbet"
+      ],
       "options": {
         "jestConfig": "apps/futbet/jest.config.ts",
         "passWithNoTests": true

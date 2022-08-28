@@ -39,3 +39,12 @@ img {
   width: 100%;
   vertical-align: top;
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
