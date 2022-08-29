@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { LoginWithGoogle } from '../../core/auth/store/auth.actions';
 
 import { RegisterComponent } from '../register/register.component';
 
@@ -35,12 +37,16 @@ import { RegisterComponent } from '../register/register.component';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private _fb: FormBuilder) {}
+  constructor(private _fb: FormBuilder, private _store: Store) {}
 
   ngOnInit(): void {
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+  }
+
+  loginWithGoogle(): void {
+    this._store.dispatch(new LoginWithGoogle());
   }
 }
