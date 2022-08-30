@@ -1,9 +1,12 @@
 import { Route } from '@angular/router';
+import { AuthGuard } from './core/auth/guards/auth.guard';
+import { noAuthGuard } from './core/auth/guards/noAuth.guard';
 
 export const routes: Route[] = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   {
     path: 'sign-in',
+    canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/login/login.component').then(
         (com) => com.LoginComponent
@@ -18,6 +21,7 @@ export const routes: Route[] = [
   },
   {
     path: 'forgot-password',
+    canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/forgot-password/forgot-password.component').then(
         (com) => com.ForgotPasswordComponent
@@ -25,6 +29,7 @@ export const routes: Route[] = [
   },
   {
     path: 'verify-email',
+    canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/verify-email/verify-email.component').then(
         (com) => com.VerifyEmailComponent
@@ -32,9 +37,21 @@ export const routes: Route[] = [
   },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./components/dashboard/dashboard.component').then(
         (com) => com.DashboardComponent
       ),
+  },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('./components/not-found/not-found.component').then(
+        (com) => com.NotFoundComponent
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: '/not-found',
   },
 ];

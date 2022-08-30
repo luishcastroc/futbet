@@ -1,35 +1,37 @@
 import 'firebase/auth';
 
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   Emitted,
   NgxsFirestoreConnect,
   StreamEmitted,
 } from '@ngxs-labs/firestore-plugin';
+import { Navigate } from '@ngxs/router-plugin';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import firebase from 'firebase/compat/app';
+import { defer, tap } from 'rxjs';
 
-import { User } from '../user.model';
 import { GetAuthState, LoginWithGoogle, Logout } from './auth.actions';
 import { AuthStateModel } from './auth.model';
-import { Injectable } from '@angular/core';
-import { defer, tap } from 'rxjs';
-import { Navigate } from '@ngxs/router-plugin';
 
 @State<AuthStateModel>({
   name: 'auth',
   defaults: {
-    user: null,
+    displayName: '',
+    photoURL: '',
+    email: '',
+    uid: '',
   },
 })
 @Injectable()
 export class AuthState implements NgxsOnInit {
   @Selector() static loggedIn(state: AuthStateModel) {
-    return !!state.user?.email;
+    return !!state.email;
   }
 
   @Selector() static loggedOut(state: AuthStateModel) {
-    return !state.user?.email;
+    return !state.email;
   }
 
   @Selector() static user(state: AuthStateModel) {
@@ -37,19 +39,19 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Selector() static uid(state: AuthStateModel) {
-    return state.user?.uid;
+    return state.uid;
   }
 
   @Selector() static displayName(state: AuthStateModel) {
-    return state.user?.displayName;
+    return state.displayName;
   }
 
   @Selector() static email(state: AuthStateModel) {
-    return state.user?.email;
+    return state.email;
   }
 
   @Selector() static photoURL(state: AuthStateModel) {
-    return state.user?.photoURL;
+    return state.photoURL;
   }
 
   constructor(
@@ -70,20 +72,19 @@ export class AuthState implements NgxsOnInit {
     ctx: StateContext<AuthStateModel>,
     { payload }: Emitted<GetAuthState, AuthStateModel>
   ) {
-    if (payload && payload.user) {
-      const user: User = {
-        displayName: payload.user.displayName,
-        photoURL: payload.user.photoURL,
-        email: payload.user.email,
-        uid: payload.user.uid,
-        emailVerified: payload.user.emailVerified,
-      };
+    if (payload) {
       ctx.patchState({
-        user,
+        displayName: payload.displayName,
+        photoURL: payload.photoURL,
+        email: payload.email,
+        uid: payload.uid,
       });
     } else {
-      ctx.patchState({
-        user: null,
+      ctx.setState({
+        displayName: '',
+        photoURL: '',
+        email: '',
+        uid: '',
       });
     }
   }

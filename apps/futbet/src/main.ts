@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { NgxsFirestoreModule } from '@ngxs-labs/firestore-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
 
 import { AppComponent } from './app/app.component';
@@ -35,7 +36,8 @@ bootstrapApplication(AppComponent, {
       NgxsModule.forRoot([AuthState]),
       NgxsReduxDevtoolsPluginModule.forRoot(),
       NgxsRouterPluginModule.forRoot(),
-      NgxsFirestoreModule.forRoot()
+      NgxsFirestoreModule.forRoot(),
+      NgxsStoragePluginModule.forRoot({ key: [AuthState] })
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   ],

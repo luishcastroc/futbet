@@ -1,5 +1,6 @@
-import { User } from '../user.model';
-
 export interface AuthStateModel {
-  user?: User | null;
+  displayName: string;
+  photoURL: string;
+  email: string;
+  uid: string;
 }
