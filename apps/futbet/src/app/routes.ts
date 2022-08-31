@@ -14,6 +14,7 @@ export const routes: Route[] = [
   },
   {
     path: 'register-user',
+    canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/register/register.component').then(
         (com) => com.RegisterComponent
@@ -38,9 +39,9 @@ export const routes: Route[] = [
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-    loadComponent: () =>
-      import('./components/dashboard/dashboard.component').then(
-        (com) => com.DashboardComponent
+    loadChildren: () =>
+      import('./components/dashboard/dashboard.routes').then(
+        (chl) => chl.dashboardRoutes
       ),
   },
   {

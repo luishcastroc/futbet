@@ -1,1 +1,28 @@
-<p>dashboard works!</p>
+<div class="flex flex-col flex-auto">
+  <mat-toolbar class="bg-transparent" *ngIf="user$ | async as user">
+    <mat-toolbar-row class="bg-slate-400 flex flex-row items-center gap-5">
+      <button mat-icon-button class="flex" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>FutBet</h1>
+      <span class="text-xs items-center" *ngIf="!hideGreeting"
+        >FutBet Quiniela Futbolera, Bienvenido {{ user.displayName }}</span
+      >
+      <span class="flex-auto"></span>
+      <button mat-raised-button (click)="logOut()">Log-Out</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="bg-transparent flex-auto">
+    <mat-sidenav #sidenav [mode]="'push'">
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="'results'"> Resultados </a>
+        <a mat-list-item [routerLink]="'my-results'"> Mis Resultados </a>
+        <a mat-list-item [routerLink]="'ranking'"> Tabla General </a>
+        <a mat-list-item (click)="sidenav.toggle()" mat-list-item>Cerrar</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="flex flex-auto">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

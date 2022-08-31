@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, UrlTree } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { Store } from '@ngxs/store';
 import { map, Observable } from 'rxjs';
@@ -16,6 +16,23 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate() {
+    return this.isLoggedIn$.pipe(
+      map((loggedIn) => {
+        if (loggedIn) {
+          return true;
+        } else {
+          this._store.dispatch(new Navigate(['/sign-in']));
+          return false;
+        }
+      })
+    );
+  }
+
+  canActivateChild():
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     return this.isLoggedIn$.pipe(
       map((loggedIn) => {
         if (loggedIn) {

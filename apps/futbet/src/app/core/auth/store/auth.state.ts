@@ -79,6 +79,8 @@ export class AuthState implements NgxsOnInit {
         email: payload.email,
         uid: payload.uid,
       });
+
+      ctx.dispatch(new Navigate(['/dashboard']));
     } else {
       ctx.setState({
         displayName: '',
@@ -90,20 +92,16 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Action(LoginWithGoogle)
-  loginWithGoogle(ctx: StateContext<AuthStateModel>) {
-    return defer(() =>
-      this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    ).pipe(
-      tap(({ user }) => {
-        if (user) {
-          ctx.dispatch(new Navigate(['/dashboard']));
-        }
-      })
-    );
+  loginWithGoogle() {
+    return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
   @Action(Logout)
-  logout() {
-    return this.afAuth.signOut();
+  logout(ctx: StateContext<AuthStateModel>) {
+    return defer(() => this.afAuth.signOut()).pipe(
+      tap(() => {
+        ctx.dispatch(new Navigate(['/sign-in']));
+      })
+    );
   }
 }
