@@ -5,6 +5,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnDestroy,
+  ViewEncapsulation,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,6 +35,7 @@ import { AuthState } from '../../core/auth/store/auth.state';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnDestroy {
   destroyed = new Subject<void>();
