@@ -100,6 +100,12 @@ export class AuthState implements NgxsOnInit {
   logout(ctx: StateContext<AuthStateModel>) {
     return defer(() => this.afAuth.signOut()).pipe(
       tap(() => {
+        ctx.setState({
+          displayName: '',
+          photoURL: '',
+          email: '',
+          uid: '',
+        });
         ctx.dispatch(new Navigate(['/sign-in']));
       })
     );
