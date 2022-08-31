@@ -8,6 +8,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HotToastModule } from '@ngneat/hot-toast';
 import { NgxsFirestoreModule } from '@ngxs-labs/firestore-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
@@ -37,7 +38,8 @@ bootstrapApplication(AppComponent, {
       NgxsReduxDevtoolsPluginModule.forRoot(),
       NgxsRouterPluginModule.forRoot(),
       NgxsFirestoreModule.forRoot(),
-      NgxsStoragePluginModule.forRoot({ key: [AuthState] })
+      NgxsStoragePluginModule.forRoot({ key: [AuthState] }),
+      HotToastModule.forRoot()
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   ],

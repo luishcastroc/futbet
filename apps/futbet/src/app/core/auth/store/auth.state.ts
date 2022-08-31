@@ -12,7 +12,12 @@ import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import firebase from 'firebase/compat/app';
 import { defer, tap } from 'rxjs';
 
-import { GetAuthState, LoginWithGoogle, Logout } from './auth.actions';
+import {
+  GetAuthState,
+  LoginWithEmailAndPassword,
+  LoginWithGoogle,
+  Logout,
+} from './auth.actions';
 import { AuthStateModel } from './auth.model';
 
 @State<AuthStateModel>({
@@ -94,6 +99,16 @@ export class AuthState implements NgxsOnInit {
   @Action(LoginWithGoogle)
   loginWithGoogle() {
     return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  @Action(LoginWithEmailAndPassword)
+  loginWithEmailAndPassword(
+    ctx: StateContext<AuthStateModel>,
+    { email, password }: LoginWithEmailAndPassword
+  ) {
+    console.log(email);
+    console.log(password);
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
   @Action(Logout)

@@ -23,6 +23,12 @@
               <mat-label>Nombre</mat-label>
               <mat-icon class="icon-size-5" matPrefix>person</mat-icon>
               <input [formControlName]="'displayName'" matInput />
+              <mat-error
+                *ngIf="displayName.errors?.['required']"
+                class="text-sm"
+              >
+                El nombre es requerido.
+              </mat-error>
             </mat-form-field>
 
             <!-- Nombre de Usuario -->
@@ -34,6 +40,12 @@
               <mat-label>Email</mat-label>
               <mat-icon class="icon-size-5" matPrefix>mail</mat-icon>
               <input [formControlName]="'email'" type="email" matInput />
+              <mat-error *ngIf="email.errors?.['required']" class="text-sm">
+                El email es requerido.
+              </mat-error>
+              <mat-error *ngIf="email.errors?.['email']" class="text-sm">
+                El email es inválido verificar.
+              </mat-error>
             </mat-form-field>
 
             <!-- Password -->
@@ -42,21 +54,23 @@
               <mat-label>Contraseña</mat-label>
               <mat-icon class="icon-size-5" matPrefix>password</mat-icon>
               <input [formControlName]="'password'" type="password" matInput />
+
+              <mat-error *ngIf="password.errors?.['required']" class="text-sm">
+                La contraseña es requerida.
+              </mat-error>
+              <mat-error
+                *ngIf="password.errors?.['passwordStrength']"
+                class="text-sm"
+              >
+                la Contraseña debe incluir mínimo 8 caracteres. Al menos una
+                mayúscula, una minúscula, un número y un caracter especial
+                (#?!@$%^&*-).
+              </mat-error>
             </mat-form-field>
             <div class="mt-1 text-md text-hint">
               Minimo 8 caracteres. Debe incluir una letra mayúscula, una
               minúscula y un caracter especial (#?!@$%^&*-).
             </div>
-            <ng-container *ngIf="password.touched">
-              <mat-error *ngIf="password.errors?.['required']">
-                La contraseña es requerida.
-              </mat-error>
-              <mat-error *ngIf="password.errors?.['passwordStrength']">
-                la Contraseña debe incluir mínimo 8 caracteres. Al menos una
-                mayúscula, una minúscula, un número y un caracter especial
-                (#?!@$%^&*-).
-              </mat-error>
-            </ng-container>
           </div>
 
           <!-- Divider -->

@@ -77,8 +77,17 @@
             matInput
             [formControlName]="'email'"
           />
-          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          <mat-error
+            *ngIf="loginForm.get('email')?.hasError('required')"
+            class="text-sm"
+          >
             El Email es requerido
+          </mat-error>
+          <mat-error
+            *ngIf="loginForm.get('email')?.hasError('email')"
+            class="text-sm"
+          >
+            El Email es inválido
           </mat-error>
         </mat-form-field>
         <!-- Password field -->
@@ -108,12 +117,17 @@
               >visibility_off</mat-icon
             >
           </button>
-          <mat-error> Contraseña requerida. </mat-error>
+          <mat-error class="text-sm"> Contraseña requerida. </mat-error>
         </mat-form-field>
         <div class="mt-8">
           <button
             role="button"
-            class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
+            type="submit"
+            (click)="loginWithEmailAndPassword()"
+            [disabled]="loginForm.invalid"
+            mat-raised-button
+            color="primary"
+            class="w-full h-12"
           >
             Login
           </button>
