@@ -14,8 +14,10 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Actions, ofActionCompleted, Store } from '@ngxs/store';
+import firebase from 'firebase/compat/app';
 import { Subject, takeUntil } from 'rxjs';
 
+import { FirebaseAuthService } from '../../core/auth/services/firebase-auth.service';
 import {
   LoginWithEmailAndPassword,
   LoginWithGoogle,
@@ -48,7 +50,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _fb: FormBuilder,
     private _store: Store,
     private _toast: HotToastService,
-    private _actions$: Actions
+    private _actions$: Actions,
+    private _fAuthS: FirebaseAuthService
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +68,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((result) => {
         const { error } = result.result;
         if (error) {
-          this._toast.error(error?.message);
+          const handledError = this._fAuthS.handleError(
+            error as firebase.auth.Error
+          );
+          this._toast.error(handledError);
         }
       });
   }

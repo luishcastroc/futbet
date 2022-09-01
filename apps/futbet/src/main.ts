@@ -43,6 +43,5 @@ bootstrapApplication(AppComponent, {
       HotToastModule.forRoot()
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-    { provide: LANGUAGE_CODE, useValue: 'es_419' },
   ],
 }).catch((err) => console.error(err));
