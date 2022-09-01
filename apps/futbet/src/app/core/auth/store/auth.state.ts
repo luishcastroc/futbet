@@ -1,7 +1,6 @@
 import 'firebase/auth';
 
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   Emitted,
   NgxsFirestoreConnect,
@@ -12,6 +11,7 @@ import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import firebase from 'firebase/compat/app';
 import { defer, tap } from 'rxjs';
 
+import { FirebaseAuthService } from '../services/firebase-auth.service';
 import {
   GetAuthState,
   LoginWithEmailAndPassword,
@@ -60,13 +60,13 @@ export class AuthState implements NgxsOnInit {
   }
 
   constructor(
-    private afAuth: AngularFireAuth,
+    private afAuth: FirebaseAuthService,
     private ngxsFirestoreConnect: NgxsFirestoreConnect
   ) {}
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
     this.ngxsFirestoreConnect.connect(GetAuthState, {
-      to: () => this.afAuth.authState,
+      to: () => this.afAuth.authState(),
     });
 
     ctx.dispatch(new GetAuthState());
@@ -106,8 +106,6 @@ export class AuthState implements NgxsOnInit {
     ctx: StateContext<AuthStateModel>,
     { email, password }: LoginWithEmailAndPassword
   ) {
-    console.log(email);
-    console.log(password);
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 

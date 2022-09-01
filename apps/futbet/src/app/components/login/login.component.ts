@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
-import { Actions, Store } from '@ngxs/store';
+import { Actions, ofActionCompleted, Store } from '@ngxs/store';
 import { Subject, takeUntil } from 'rxjs';
 
 import {
@@ -57,7 +57,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: ['', [Validators.required]],
     });
 
-    this._actions$.pipe(takeUntil(this.destroyed)).subscribe();
+    this._actions$
+      .pipe(
+        ofActionCompleted(LoginWithEmailAndPassword, LoginWithGoogle),
+        takeUntil(this.destroyed)
+      )
+      .subscribe((result) => {
+        const { error } = result.result;
+        if (error) {
+          this._toast.error(error?.message);
+        }
+      });
   }
 
   loginWithGoogle(): void {
@@ -66,8 +76,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginWithEmailAndPassword(): void {
     const { email, password } = this.loginForm.value;
-    console.log('email: ', email);
-    console.log('password: ', password);
     this._store.dispatch(new LoginWithEmailAndPassword(email, password));
   }
 

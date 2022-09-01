@@ -3,6 +3,7 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { LANGUAGE_CODE } from '@angular/fire/compat/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -42,5 +43,6 @@ bootstrapApplication(AppComponent, {
       HotToastModule.forRoot()
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    { provide: LANGUAGE_CODE, useValue: 'es_419' },
   ],
 }).catch((err) => console.error(err));
