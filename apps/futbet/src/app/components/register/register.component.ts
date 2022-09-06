@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Navigate } from '@ngxs/router-plugin';
 import { Store } from '@ngxs/store';
+import { CreateUserWithEmailAndPassword } from '../../core/auth/store/auth.actions';
 import { createPasswordStrengthValidator } from './password-stregth.validator';
 
 @Component({
@@ -63,6 +64,9 @@ export class RegisterComponent implements OnInit {
   }
 
   saveAccount(): void {
-    console.log(this.registerForm.value);
+    const { email, password, displayName } = this.registerForm.value;
+    this._store.dispatch(
+      new CreateUserWithEmailAndPassword(email, password, displayName)
+    );
   }
 }

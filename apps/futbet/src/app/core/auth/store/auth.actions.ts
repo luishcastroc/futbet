@@ -3,6 +3,15 @@ export class LoginWithEmailAndPassword {
   constructor(public email: string, public password: string) {}
 }
 
+export class CreateUserWithEmailAndPassword {
+  static type = '[Auth] CreateUserWithEmailAndPassword';
+  constructor(
+    public email: string,
+    public password: string,
+    public displayName: string
+  ) {}
+}
+
 export class LoginWithGoogle {
   static readonly type = '[Auth] LoginWithGoogle';
 }

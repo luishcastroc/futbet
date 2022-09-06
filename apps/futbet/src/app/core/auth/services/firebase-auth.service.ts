@@ -21,6 +21,20 @@ export class FirebaseAuthService {
     return this.afAuth.signInWithPopup(provider);
   }
 
+  createUserWithEmailAndPassword(
+    email: string,
+    password: string,
+    displayName: string
+  ) {
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        if (result.user) {
+          result.user.updateProfile({ displayName });
+        }
+      });
+  }
+
   signOut() {
     return this.afAuth.signOut();
   }

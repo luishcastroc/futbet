@@ -13,6 +13,7 @@ import { defer, tap } from 'rxjs';
 
 import { FirebaseAuthService } from '../services/firebase-auth.service';
 import {
+  CreateUserWithEmailAndPassword,
   GetAuthState,
   LoginWithEmailAndPassword,
   LoginWithGoogle,
@@ -107,6 +108,18 @@ export class AuthState implements NgxsOnInit {
     { email, password }: LoginWithEmailAndPassword
   ) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  @Action(CreateUserWithEmailAndPassword)
+  createUserWithEmailAndPassword(
+    ctx: StateContext<AuthStateModel>,
+    { email, password, displayName }: CreateUserWithEmailAndPassword
+  ) {
+    return this.afAuth.createUserWithEmailAndPassword(
+      email,
+      password,
+      displayName
+    );
   }
 
   @Action(Logout)
