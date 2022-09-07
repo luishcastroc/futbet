@@ -1,5 +1,17 @@
-<div class="flex flex-auto flex-col p-6">
-  <p class="text-indigo-100">
-    {{ myResults ? 'My results' : 'Results' }} works!!
-  </p>
-</div>
+<ng-container *ngIf="userId$ | async as user">
+  <div class="flex flex-auto flex-col p-6">
+    <p class="text-indigo-100">
+      {{ myResults ? 'My results' : 'Results' }} works!!
+    </p>
+    <button
+      role="button"
+      type="submit"
+      (click)="create(user)"
+      mat-raised-button
+      color="primary"
+      class="w-full h-12"
+    >
+      Create
+    </button>
+  </div>
+</ng-container>

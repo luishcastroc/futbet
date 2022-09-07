@@ -3,7 +3,6 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { LANGUAGE_CODE } from '@angular/fire/compat/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -18,6 +17,7 @@ import { NgxsModule } from '@ngxs/store';
 
 import { AppComponent } from './app/app.component';
 import { AuthState } from './app/core/auth/store/auth.state';
+import { ResultsState } from './app/store/results.state';
 import { routes } from './app/routes';
 import { environment } from './environments/environment';
 
@@ -35,11 +35,11 @@ bootstrapApplication(AppComponent, {
       provideAuth(() => getAuth()),
       provideDatabase(() => getDatabase()),
       provideFirestore(() => getFirestore()),
-      NgxsModule.forRoot([AuthState]),
+      NgxsModule.forRoot([AuthState, ResultsState]),
       NgxsReduxDevtoolsPluginModule.forRoot(),
       NgxsRouterPluginModule.forRoot(),
       NgxsFirestoreModule.forRoot(),
-      NgxsStoragePluginModule.forRoot({ key: [AuthState] }),
+      NgxsStoragePluginModule.forRoot({ key: [AuthState, ResultsState] }),
       HotToastModule.forRoot()
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },

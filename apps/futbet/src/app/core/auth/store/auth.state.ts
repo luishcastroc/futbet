@@ -1,6 +1,7 @@
 import 'firebase/auth';
 
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   Emitted,
   NgxsFirestoreConnect,
@@ -9,9 +10,7 @@ import {
 import { Navigate } from '@ngxs/router-plugin';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import firebase from 'firebase/compat/app';
-import { defer, tap } from 'rxjs';
 
-import { FirebaseAuthService } from '../services/firebase-auth.service';
 import {
   CreateUserWithEmailAndPassword,
   GetAuthState,
@@ -61,13 +60,13 @@ export class AuthState implements NgxsOnInit {
   }
 
   constructor(
-    private afAuth: FirebaseAuthService,
+    private afAuth: AngularFireAuth,
     private ngxsFirestoreConnect: NgxsFirestoreConnect
   ) {}
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
     this.ngxsFirestoreConnect.connect(GetAuthState, {
-      to: () => this.afAuth.authState(),
+      to: () => this.afAuth.authState,
     });
 
     ctx.dispatch(new GetAuthState());
@@ -85,8 +84,6 @@ export class AuthState implements NgxsOnInit {
         email: payload.email,
         uid: payload.uid,
       });
-
-      ctx.dispatch(new Navigate(['/dashboard']));
     } else {
       ctx.setState({
         displayName: '',
@@ -98,42 +95,53 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Action(LoginWithGoogle)
-  loginWithGoogle() {
-    return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  async loginWithGoogle(ctx: StateContext<AuthStateModel>) {
+    await this.afAuth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(() => {
+        ctx.dispatch(new Navigate(['/dashboard']));
+      });
   }
 
   @Action(LoginWithEmailAndPassword)
-  loginWithEmailAndPassword(
+  async loginWithEmailAndPassword(
     ctx: StateContext<AuthStateModel>,
     { email, password }: LoginWithEmailAndPassword
   ) {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+    await this.afAuth.signInWithEmailAndPassword(email, password).then(() => {
+      ctx.dispatch(new Navigate(['/dashboard']));
+    });
   }
 
   @Action(CreateUserWithEmailAndPassword)
-  createUserWithEmailAndPassword(
+  async createUserWithEmailAndPassword(
     ctx: StateContext<AuthStateModel>,
     { email, password, displayName }: CreateUserWithEmailAndPassword
   ) {
-    return this.afAuth.createUserWithEmailAndPassword(
-      email,
-      password,
-      displayName
-    );
+    await this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then(async (result) => {
+        if (result.user) {
+          await result.user.updateProfile({ displayName }).then(() => {
+            ctx.patchState({
+              displayName,
+            });
+            ctx.dispatch(new Navigate(['/dashboard']));
+          });
+        }
+      });
   }
 
   @Action(Logout)
-  logout(ctx: StateContext<AuthStateModel>) {
-    return defer(() => this.afAuth.signOut()).pipe(
-      tap(() => {
-        ctx.setState({
-          displayName: '',
-          photoURL: '',
-          email: '',
-          uid: '',
-        });
-        ctx.dispatch(new Navigate(['/sign-in']));
-      })
-    );
+  async logout(ctx: StateContext<AuthStateModel>) {
+    await this.afAuth.signOut().then(() => {
+      ctx.setState({
+        displayName: '',
+        photoURL: '',
+        email: '',
+        uid: '',
+      });
+      ctx.dispatch(new Navigate(['/sign-in']));
+    });
   }
 }
