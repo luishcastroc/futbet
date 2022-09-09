@@ -98,8 +98,16 @@ export class AuthState implements NgxsOnInit {
   async loginWithGoogle(ctx: StateContext<AuthStateModel>) {
     await this.afAuth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(() => {
-        ctx.dispatch(new Navigate(['/dashboard']));
+      .then(({ user }) => {
+        if (user) {
+          ctx.patchState({
+            displayName: user.displayName as string,
+            photoURL: user.photoURL as string,
+            email: user.email as string,
+            uid: user.uid,
+          });
+          ctx.dispatch(new Navigate(['/dashboard']));
+        }
       });
   }
 
@@ -108,9 +116,19 @@ export class AuthState implements NgxsOnInit {
     ctx: StateContext<AuthStateModel>,
     { email, password }: LoginWithEmailAndPassword
   ) {
-    await this.afAuth.signInWithEmailAndPassword(email, password).then(() => {
-      ctx.dispatch(new Navigate(['/dashboard']));
-    });
+    await this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        if (user) {
+          ctx.patchState({
+            displayName: user.displayName as string,
+            photoURL: user.photoURL as string,
+            email: user.email as string,
+            uid: user.uid,
+          });
+          ctx.dispatch(new Navigate(['/dashboard']));
+        }
+      });
   }
 
   @Action(CreateUserWithEmailAndPassword)
@@ -120,9 +138,9 @@ export class AuthState implements NgxsOnInit {
   ) {
     await this.afAuth
       .createUserWithEmailAndPassword(email, password)
-      .then(async (result) => {
-        if (result.user) {
-          await result.user.updateProfile({ displayName }).then(() => {
+      .then(async ({ user }) => {
+        if (user) {
+          await user.updateProfile({ displayName }).then(() => {
             ctx.patchState({
               displayName,
             });

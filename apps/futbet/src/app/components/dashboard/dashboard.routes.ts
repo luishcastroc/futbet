@@ -31,6 +31,11 @@ export const dashboardRoutes: Route[] = [
             (com) => com.ResultsComponent
           ),
       },
+      {
+        path: 'games',
+        loadComponent: () =>
+          import('../games/games.component').then((com) => com.GamesComponent),
+      },
     ],
   },
 ];

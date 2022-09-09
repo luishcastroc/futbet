@@ -40,7 +40,9 @@ bootstrapApplication(AppComponent, {
       NgxsRouterPluginModule.forRoot(),
       NgxsFirestoreModule.forRoot(),
       NgxsStoragePluginModule.forRoot({ key: [AuthState, ResultsState] }),
-      HotToastModule.forRoot()
+      HotToastModule.forRoot({
+        position: 'bottom-center',
+      })
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   ],
