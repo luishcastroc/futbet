@@ -92,7 +92,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
       updateDate: DateTime.now().toJSDate(),
       results: [
         {
-          id: '1',
+          id: 1,
           homeTeamId: 1,
           awayTeamId: 2,
           homeScore: 1,

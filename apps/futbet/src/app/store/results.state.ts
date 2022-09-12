@@ -1,6 +1,7 @@
 import 'firebase/auth';
 
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   Emitted,
   NgxsFirestoreConnect,
@@ -9,9 +10,10 @@ import {
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { tap, throwError } from 'rxjs';
 
-import { Results } from '../core/result.model';
+import { Game, Results } from '../core/result.model';
+import { GamesFirestoreService } from '../services/games-firestore.service';
 import { ResultsFirestoreService } from '../services/results-firestore.service';
-import { Create, GetAll, GetUserResults } from './results.actions';
+import { Create, GetAll, GetUserResults, SeedGames } from './results.actions';
 import { ResultsStateModel } from './results.model';
 
 @State<ResultsStateModel>({
@@ -20,6 +22,7 @@ import { ResultsStateModel } from './results.model';
     userResults: undefined,
     results: [],
     ranking: [],
+    games: [],
   },
 })
 @Injectable()
@@ -38,7 +41,9 @@ export class ResultsState implements NgxsOnInit {
 
   constructor(
     private resultsFs: ResultsFirestoreService,
-    private ngxsFirestoreConnect: NgxsFirestoreConnect
+    private gamesFs: GamesFirestoreService,
+    private ngxsFirestoreConnect: NgxsFirestoreConnect,
+    private afs: AngularFirestore
   ) {}
 
   ngxsOnInit() {
@@ -88,5 +93,31 @@ export class ResultsState implements NgxsOnInit {
         })
       );
     }
+  }
+
+  //Seed Games
+  @Action(SeedGames)
+  seedGames(
+    { getState, patchState }: StateContext<ResultsStateModel>,
+    { payload }: SeedGames
+  ) {
+    return this.gamesFs.create$(payload).pipe(
+      tap(() => {
+        const state = getState();
+        let games: Game[] = [];
+        if (state.games.length > 0) {
+          games = [...state.games];
+          games.push(payload);
+        } else {
+          games.push(payload);
+        }
+        patchState({ games });
+      })
+    );
+    // return this.gamesFs.collection$(ref => {
+    //   let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+    //   if (size) { query = query.where('size', '==', size) };
+    //   if (color) { query = query.where('color', '==', color) };
+    //   return query;);
   }
 }
