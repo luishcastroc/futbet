@@ -68,7 +68,7 @@ export class DashboardComponent implements OnDestroy {
         Breakpoints.XLarge,
       ])
       .pipe(takeUntil(this.destroyed))
-      .subscribe((result) => {
+      .subscribe(result => {
         for (const query of Object.keys(result.breakpoints)) {
           if (result.breakpoints[query]) {
             this.currentScreenSize =

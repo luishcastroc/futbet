@@ -1,4 +1,4 @@
-export const games = [
+export const worldCupGames = [
   {
     id: 1,
     group: 'A',
@@ -252,7 +252,7 @@ export const games = [
   {
     id: 19,
     group: 'A',
-    homeTeamId: '4',
+    homeTeamId: 4,
     awayTeamId: 2,
     homeScore: 0,
     awayScore: 0,
@@ -334,7 +334,6 @@ export const games = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/125px-Flag_of_Mexico.svg.png',
   },
   {
-    away_scorers: [],
     id: 25,
     group: 'E',
     homeTeamId: 20,
@@ -490,7 +489,7 @@ export const games = [
   {
     id: 36,
     group: 'A',
-    homeTeamId: '4',
+    homeTeamId: 4,
     awayTeamId: 1,
     homeScore: 0,
     awayScore: 0,

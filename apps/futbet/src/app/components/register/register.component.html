@@ -1,10 +1,8 @@
 <div class="flex-auto flex flex-col">
   <div
-    class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center flex-1"
-  >
+    class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center flex-1">
     <div
-      class="bg-gray-100/75 shadow-lg rounded xl:w-7/12 lg:w-7/12 md:w-2/3 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6"
-    >
+      class="bg-gray-100/75 shadow-lg rounded xl:w-7/12 lg:w-7/12 md:w-2/3 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
       <!-- Content -->
       <div class="w-full max-w-3xl">
         <!-- Form -->
@@ -25,8 +23,7 @@
               <input [formControlName]="'displayName'" matInput />
               <mat-error
                 *ngIf="displayName.errors?.['required']"
-                class="text-sm"
-              >
+                class="text-sm">
                 El nombre es requerido.
               </mat-error>
             </mat-form-field>
@@ -35,8 +32,7 @@
 
             <mat-form-field
               class="fuse-mat-emphasized-affix w-full"
-              appearance="outline"
-            >
+              appearance="outline">
               <mat-label>Email</mat-label>
               <mat-icon class="icon-size-5" matPrefix>mail</mat-icon>
               <input [formControlName]="'email'" type="email" matInput />
@@ -60,8 +56,7 @@
               </mat-error>
               <mat-error
                 *ngIf="password.errors?.['passwordStrength']"
-                class="text-sm"
-              >
+                class="text-sm">
                 la Contraseña debe incluir mínimo 8 caracteres. Al menos una
                 mayúscula, una minúscula, un número y un caracter especial
                 (#?!@$%^&*-).
@@ -87,8 +82,7 @@
                 type="submit"
                 [color]="'primary'"
                 (click)="saveAccount()"
-                [disabled]="registerForm.invalid"
-              >
+                [disabled]="registerForm.invalid">
                 Guardar
               </button>
             </div>

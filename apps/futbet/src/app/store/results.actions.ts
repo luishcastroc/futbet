@@ -18,3 +18,7 @@ export class SeedGames {
   public static readonly type = '[Games] SeedGames';
   constructor(public payload: Game) {}
 }
+
+export class GetAllGames {
+  public static readonly type = '[Games] GetAllGames';
+}

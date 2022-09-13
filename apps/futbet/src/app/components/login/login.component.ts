@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         ofActionCompleted(LoginWithEmailAndPassword, LoginWithGoogle),
         takeUntil(this.destroyed)
       )
-      .subscribe((result) => {
+      .subscribe(result => {
         const { error } = result.result;
         if (error) {
           const handledError = this._fAuthS.handleError(

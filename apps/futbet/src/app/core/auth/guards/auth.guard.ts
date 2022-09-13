@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     return this.isLoggedIn$.pipe(
-      map((loggedIn) => {
+      map(loggedIn => {
         if (loggedIn) {
           return true;
         } else {
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     return this.isLoggedIn$.pipe(
-      map((loggedIn) => {
+      map(loggedIn => {
         if (loggedIn) {
           return true;
         } else {

@@ -8,33 +8,33 @@ export const dashboardRoutes: Route[] = [
     canActivateChild: [AuthGuard],
     pathMatch: 'prefix',
     loadComponent: () =>
-      import('./dashboard.component').then((com) => com.DashboardComponent),
+      import('./dashboard.component').then(com => com.DashboardComponent),
     children: [
       {
         path: 'ranking',
         loadComponent: () =>
           import('../ranking/ranking.component').then(
-            (com) => com.RankingComponent
+            com => com.RankingComponent
           ),
       },
       {
         path: 'results',
         loadComponent: () =>
           import('../results/results.component').then(
-            (com) => com.ResultsComponent
+            com => com.ResultsComponent
           ),
       },
       {
         path: 'my-results',
         loadComponent: () =>
           import('../results/results.component').then(
-            (com) => com.ResultsComponent
+            com => com.ResultsComponent
           ),
       },
       {
         path: 'games',
         loadComponent: () =>
-          import('../games/games.component').then((com) => com.GamesComponent),
+          import('../games/games.component').then(com => com.GamesComponent),
       },
     ],
   },

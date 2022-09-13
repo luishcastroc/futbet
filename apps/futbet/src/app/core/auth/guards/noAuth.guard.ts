@@ -17,7 +17,7 @@ export class noAuthGuard implements CanActivate {
 
   canActivate() {
     return this.isLoggedIn$.pipe(
-      map((loggedIn) => {
+      map(loggedIn => {
         if (loggedIn) {
           this._store.dispatch(new Navigate(['/dashboard']));
           return false;

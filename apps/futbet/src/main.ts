@@ -46,4 +46,4 @@ bootstrapApplication(AppComponent, {
     ),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   ],
-}).catch((err) => console.error(err));
+}).catch(err => console.error(err));

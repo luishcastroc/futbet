@@ -13,7 +13,13 @@ import { tap, throwError } from 'rxjs';
 import { Game, Results } from '../core/result.model';
 import { GamesFirestoreService } from '../services/games-firestore.service';
 import { ResultsFirestoreService } from '../services/results-firestore.service';
-import { Create, GetAll, GetUserResults, SeedGames } from './results.actions';
+import {
+  Create,
+  GetAll,
+  GetAllGames,
+  GetUserResults,
+  SeedGames,
+} from './results.actions';
 import { ResultsStateModel } from './results.model';
 
 @State<ResultsStateModel>({
@@ -39,6 +45,10 @@ export class ResultsState implements NgxsOnInit {
     return state.ranking;
   }
 
+  @Selector() static games(state: ResultsStateModel) {
+    return state.games;
+  }
+
   constructor(
     private resultsFs: ResultsFirestoreService,
     private gamesFs: GamesFirestoreService,
@@ -51,6 +61,10 @@ export class ResultsState implements NgxsOnInit {
     this.ngxsFirestoreConnect.connect(GetAll, {
       to: () => this.resultsFs.collection$(),
     });
+
+    this.ngxsFirestoreConnect.connect(GetAllGames, {
+      to: () => this.gamesFs.collection$(),
+    });
   }
 
   @Action(StreamEmitted(GetAll))
@@ -61,6 +75,15 @@ export class ResultsState implements NgxsOnInit {
     ctx.patchState({ results: payload });
   }
 
+  @Action(StreamEmitted(GetAllGames))
+  getAllGamesEmitted(
+    ctx: StateContext<ResultsStateModel>,
+    { payload }: Emitted<GetAllGames, Game[]>
+  ) {
+    const games = payload.sort((a, b) => a.id - b.id);
+    ctx.patchState({ games });
+  }
+
   @Action(GetUserResults)
   getUserResults(
     ctx: StateContext<ResultsStateModel>,
@@ -68,7 +91,7 @@ export class ResultsState implements NgxsOnInit {
   ) {
     const state = ctx.getState();
     const results = [...state.results];
-    const idx = results.findIndex((result) => result.userId === payload);
+    const idx = results.findIndex(result => result.userId === payload);
     if (idx !== -1) {
       const userResults = results[idx];
       ctx.patchState({ userResults });

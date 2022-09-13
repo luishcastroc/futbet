@@ -61,7 +61,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
     this.actions$
       .pipe(ofActionCompleted(Create), takeUntil(this._unsubscribeAll))
-      .subscribe((result) => {
+      .subscribe(result => {
         const { error, successful } = result.result;
         const { action } = result;
         let message;

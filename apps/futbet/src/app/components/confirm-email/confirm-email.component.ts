@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'futbet-confirm-email',
@@ -9,8 +9,4 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./confirm-email.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmEmailComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class ConfirmEmailComponent {}

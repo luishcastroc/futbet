@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'futbet-confirm',
@@ -9,8 +9,4 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./confirm.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class ConfirmComponent {}

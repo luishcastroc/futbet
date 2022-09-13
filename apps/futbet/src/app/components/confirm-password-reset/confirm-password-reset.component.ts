@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'futbet-confirm-password-reset',
@@ -9,8 +9,4 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./confirm-password-reset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmPasswordResetComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class ConfirmPasswordResetComponent {}
