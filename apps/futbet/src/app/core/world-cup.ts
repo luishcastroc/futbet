@@ -21,10 +21,11 @@ export const worldCupGames = [
     homeScore: 0,
     awayScore: 0,
     homeTeamEs: 'Inglaterra',
-    awayTeamEs: 'Iran',
+    awayTeamEs: 'Irán',
     homeFlag:
       'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/125px-Flag_of_England.svg.png',
-    awayFlag: 'https://en.wikipedia.org/wiki/File:Flag_of_Iran.svg',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
   },
   {
     id: 3,
@@ -89,7 +90,7 @@ export const worldCupGames = [
     awayTeamId: 14,
     homeScore: 0,
     awayScore: 0,
-    homeTeamEs: 'Mexico',
+    homeTeamEs: 'México',
     awayTeamEs: 'Polonia',
     homeFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/125px-Flag_of_Mexico.svg.png',
@@ -229,9 +230,10 @@ export const worldCupGames = [
     awayTeamId: 8,
     homeScore: 0,
     awayScore: 0,
-    homeTeamEs: 'Iran',
+    homeTeamEs: 'Irán',
     awayTeamEs: 'Gales',
-    homeFlag: 'https://en.wikipedia.org/wiki/File:Flag_of_Iran.svg',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Wales_%281959%29.svg/125px-Flag_of_Wales_%281959%29.svg.png',
   },
@@ -327,7 +329,7 @@ export const worldCupGames = [
     homeScore: 0,
     awayScore: 0,
     homeTeamEs: 'Argentina',
-    awayTeamEs: 'Mexico',
+    awayTeamEs: 'México',
     homeFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/125px-Flag_of_Argentina.svg.png',
     awayFlag:
@@ -466,9 +468,10 @@ export const worldCupGames = [
     awayTeamId: 7,
     homeScore: 0,
     awayScore: 0,
-    homeTeamEs: 'Iran',
+    homeTeamEs: 'Irán',
     awayTeamEs: 'U.S.A.',
-    homeFlag: 'https://en.wikipedia.org/wiki/File:Flag_of_Iran.svg',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png',
   },
@@ -550,7 +553,7 @@ export const worldCupGames = [
     homeScore: 0,
     awayScore: 0,
     homeTeamEs: 'Arabia Saudita',
-    awayTeamEs: 'Mexico',
+    awayTeamEs: 'México',
     homeFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/125px-Flag_of_Saudi_Arabia.svg.png',
     awayFlag:

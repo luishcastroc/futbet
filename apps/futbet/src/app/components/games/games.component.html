@@ -3,10 +3,38 @@
     <div
       class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center flex-1">
       <div
-        class="bg-gray-100/75 shadow-lg rounded xl:w-9/12 lg:w-9/12 md:w-2/3 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6 flex flex-col gap-3 items-center break-all max-h-screen">
+        class="bg-gray-100/75 shadow-lg rounded xl:w-9/12 lg:w-9/12 md:w-2/3 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6 flex flex-col gap-3 items-center break-all max-h-[50rem] overflow-y-auto">
         <!-- Content -->
         <ng-container *ngFor="let game of games">
-          {{ game | json }}
+          <div class="container rounded-xl relative shadow-sm flex flex-row">
+            <!-- team 1 -->
+            <div class="w-full box-border p-7">
+              <div
+                class="relative z-[2] text-center flex flex-col items-center justify-center">
+                <img
+                  src="{{ game.homeFlag }}"
+                  alt="Bandera de {{ game.homeTeamEs }}"
+                  class="w-24 max-w-full h-16 align-middle border-none" />
+                <h3 class="mt-3 text-[25px]">{{ game.homeTeamEs }}</h3>
+              </div>
+            </div>
+            <!-- Score -->
+            <span
+              class="self-center text-center w-1/2 text-3xl text-black font-bold tracking-widest]"
+              >{{ game.homeScore }} - {{ game.awayScore }}</span
+            >
+            <!-- team 2 -->
+            <div class="w-full box-border p-7 relative before:absolute">
+              <div
+                class="relative z-[2] text-center flex flex-col items-center justify-center">
+                <img
+                  src="{{ game.awayFlag }}"
+                  alt="Bandera de {{ game.awayTeamEs }}"
+                  class="w-24 max-w-full h-16 align-middle border-none" />
+                <h3 class="mt-3 text-[25px]">{{ game.awayTeamEs }}</h3>
+              </div>
+            </div>
+          </div>
         </ng-container>
       </div>
     </div>
