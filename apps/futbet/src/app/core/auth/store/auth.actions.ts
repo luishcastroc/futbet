@@ -1,3 +1,5 @@
+import { User } from '../user.model';
+
 export class LoginWithEmailAndPassword {
   static type = '[Auth] LoginWithEmailAndPassword';
   constructor(public email: string, public password: string) {}
@@ -22,4 +24,9 @@ export class GetAuthState {
 
 export class Logout {
   static type = '[Auth] Logout';
+}
+
+export class CreateUserInStore {
+  static type = '[Auth] CreateUserInStore';
+  constructor(public payload: Partial<User>) {}
 }

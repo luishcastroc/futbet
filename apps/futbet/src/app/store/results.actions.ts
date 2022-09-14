@@ -6,7 +6,7 @@ export class GetAll {
 
 export class GetUserResults {
   public static readonly type = '[Results] GetUserResults';
-  constructor(public payload: string) {}
+  constructor(public payload: string | null) {}
 }
 
 export class Create {
@@ -21,4 +21,8 @@ export class SeedGames {
 
 export class GetAllGames {
   public static readonly type = '[Games] GetAllGames';
+}
+
+export class ClearResultsState {
+  public static readonly type = '[Games] ClearResultsState';
 }

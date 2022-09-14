@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -29,9 +28,13 @@ import { ResultsState } from '../../store/results.state';
 })
 export class ResultsComponent implements OnInit, OnDestroy {
   myResults = false;
-  userId$!: Observable<string>;
+  userId$!: Observable<string | null>;
   userResults$!: Observable<Results | undefined>;
-  private _unsubscribeAll: Subject<any> = new Subject<any>();
+  private _unsubscribeAll: Subject<unknown> = new Subject<unknown>();
+  today = DateTime.now().toLocal();
+  wcDate = DateTime.fromISO('2022-11-20');
+
+  dateBeforeWc = this.today < this.wcDate;
 
   constructor(
     private _router: Router,

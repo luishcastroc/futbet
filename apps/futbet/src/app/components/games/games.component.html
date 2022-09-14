@@ -1,4 +1,4 @@
-<ng-container *ngIf="games$ | async as games">
+<ng-container *ngIf="games$ | async as games; else loadingspinner">
   <div class="flex-auto flex flex-col">
     <div
       class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center flex-1">
@@ -40,3 +40,4 @@
     </div>
   </div>
 </ng-container>
+<ng-template #loadingspinner><mat-spinner></mat-spinner></ng-template>

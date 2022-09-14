@@ -1,6 +1,7 @@
 import 'firebase/auth';
 
 import { Injectable } from '@angular/core';
+import { user } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   Emitted,
@@ -10,8 +11,12 @@ import {
 import { Navigate } from '@ngxs/router-plugin';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import firebase from 'firebase/compat/app';
+import { tap } from 'rxjs';
 
+import { ClearResultsState } from '../../../store/results.actions';
+import { UsersFirestoreService } from '../services/firebase-users.service';
 import {
+  CreateUserInStore,
   CreateUserWithEmailAndPassword,
   GetAuthState,
   LoginWithEmailAndPassword,
@@ -19,6 +24,7 @@ import {
   Logout,
 } from './auth.actions';
 import { AuthStateModel } from './auth.model';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -61,7 +67,9 @@ export class AuthState implements NgxsOnInit {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private ngxsFirestoreConnect: NgxsFirestoreConnect
+    private ngxsFirestoreConnect: NgxsFirestoreConnect,
+    private usersFs: UsersFirestoreService,
+    private afs: AngularFirestore
   ) {}
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
@@ -98,14 +106,35 @@ export class AuthState implements NgxsOnInit {
   async loginWithGoogle(ctx: StateContext<AuthStateModel>) {
     await this.afAuth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(({ user }) => {
+      .then(async ({ user }) => {
         if (user) {
           ctx.patchState({
-            displayName: user.displayName as string,
-            photoURL: user.photoURL as string,
-            email: user.email as string,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            email: user.email,
             uid: user.uid,
           });
+
+          const userQry = await this.afs.firestore
+            .collection('users')
+            .where('uid', '==', user.uid)
+            .get();
+
+          const storeUser = userQry.docs[0]
+            ? userQry.docs[0].data()
+            : undefined;
+
+          if (!storeUser) {
+            const { displayName, uid, email } = user;
+            if (displayName && uid && email) {
+              ctx.dispatch(new CreateUserInStore({ uid, email, displayName }));
+            } else {
+              throw new Error(
+                'Error creando usuario en la base de datos, verificar'
+              );
+            }
+          }
+
           ctx.dispatch(new Navigate(['/dashboard']));
         }
       });
@@ -121,9 +150,9 @@ export class AuthState implements NgxsOnInit {
       .then(({ user }) => {
         if (user) {
           ctx.patchState({
-            displayName: user.displayName as string,
-            photoURL: user.photoURL as string,
-            email: user.email as string,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            email: user.email,
             uid: user.uid,
           });
           ctx.dispatch(new Navigate(['/dashboard']));
@@ -140,14 +169,24 @@ export class AuthState implements NgxsOnInit {
       .createUserWithEmailAndPassword(email, password)
       .then(async ({ user }) => {
         if (user) {
-          await user.updateProfile({ displayName }).then(() => {
+          const uid = user.uid;
+          await await user.updateProfile({ displayName }).then(() => {
             ctx.patchState({
               displayName,
             });
-            ctx.dispatch(new Navigate(['/dashboard']));
+            ctx.dispatch(new CreateUserInStore({ uid, email, displayName }));
           });
         }
       });
+  }
+
+  @Action(CreateUserInStore)
+  create(ctx: StateContext<AuthStateModel>, { payload }: CreateUserInStore) {
+    return this.usersFs.create$(payload).pipe(
+      tap(() => {
+        ctx.dispatch(new Navigate(['/dashboard']));
+      })
+    );
   }
 
   @Action(Logout)
@@ -159,7 +198,7 @@ export class AuthState implements NgxsOnInit {
         email: '',
         uid: '',
       });
-      ctx.dispatch(new Navigate(['/sign-in']));
+      ctx.dispatch([new Navigate(['/sign-in']), new ClearResultsState()]);
     });
   }
 }

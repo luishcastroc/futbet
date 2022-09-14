@@ -1,6 +1,6 @@
 export interface AuthStateModel {
-  displayName: string;
-  photoURL: string;
-  email: string;
-  uid: string;
+  displayName: string | null;
+  photoURL: string | null;
+  email: string | null;
+  uid: string | null;
 }

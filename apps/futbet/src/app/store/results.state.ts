@@ -7,13 +7,21 @@ import {
   NgxsFirestoreConnect,
   StreamEmitted,
 } from '@ngxs-labs/firestore-plugin';
-import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
+import {
+  Action,
+  NgxsOnInit,
+  Selector,
+  State,
+  StateContext,
+  Store,
+} from '@ngxs/store';
 import { tap, throwError } from 'rxjs';
 
 import { Game, Results } from '../core/result.model';
 import { GamesFirestoreService } from '../services/games-firestore.service';
 import { ResultsFirestoreService } from '../services/results-firestore.service';
 import {
+  ClearResultsState,
   Create,
   GetAll,
   GetAllGames,
@@ -21,6 +29,7 @@ import {
   SeedGames,
 } from './results.actions';
 import { ResultsStateModel } from './results.model';
+import { AuthState } from '../core/auth/store/auth.state';
 
 @State<ResultsStateModel>({
   name: 'results',
@@ -53,7 +62,8 @@ export class ResultsState implements NgxsOnInit {
     private resultsFs: ResultsFirestoreService,
     private gamesFs: GamesFirestoreService,
     private ngxsFirestoreConnect: NgxsFirestoreConnect,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private _store: Store
   ) {}
 
   ngxsOnInit() {
@@ -142,5 +152,10 @@ export class ResultsState implements NgxsOnInit {
     //   if (size) { query = query.where('size', '==', size) };
     //   if (color) { query = query.where('color', '==', color) };
     //   return query;);
+  }
+
+  @Action(ClearResultsState)
+  clearResultsState({ patchState }: StateContext<ResultsStateModel>) {
+    patchState({ games: [], ranking: [], results: [], userResults: undefined });
   }
 }
