@@ -27,8 +27,8 @@ export const dashboardRoutes: Route[] = [
       {
         path: 'my-results',
         loadComponent: () =>
-          import('../results/results.component').then(
-            com => com.ResultsComponent
+          import('../my-results/my-results.component').then(
+            com => com.MyResultsComponent
           ),
       },
       {

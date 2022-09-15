@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { Store } from '@ngxs/store';
@@ -10,10 +10,8 @@ import { AuthState } from '../store/auth.state';
   providedIn: 'root',
 })
 export class noAuthGuard implements CanActivate {
-  isLoggedIn$!: Observable<boolean>;
-  constructor(private _store: Store) {
-    this.isLoggedIn$ = this._store.select(AuthState.loggedIn);
-  }
+  private _store = inject(Store);
+  isLoggedIn$: Observable<boolean> = this._store.select(AuthState.loggedIn);
 
   canActivate() {
     return this.isLoggedIn$.pipe(

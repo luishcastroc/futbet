@@ -1,6 +1,6 @@
 import 'firebase/auth';
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   Emitted,
@@ -17,9 +17,8 @@ import {
 } from '@ngxs/store';
 import { tap, throwError } from 'rxjs';
 
-import { Game, Results } from '../core/result.model';
-import { GamesFirestoreService } from '../services/games-firestore.service';
-import { ResultsFirestoreService } from '../services/results-firestore.service';
+import { Game, Results } from '../core';
+import { GamesFirestoreService, ResultsFirestoreService } from '../services';
 import {
   ClearResultsState,
   Create,
@@ -29,7 +28,6 @@ import {
   SeedGames,
 } from './results.actions';
 import { ResultsStateModel } from './results.model';
-import { AuthState } from '../core/auth/store/auth.state';
 
 @State<ResultsStateModel>({
   name: 'results',
@@ -42,6 +40,12 @@ import { AuthState } from '../core/auth/store/auth.state';
 })
 @Injectable()
 export class ResultsState implements NgxsOnInit {
+  private resultsFs = inject(ResultsFirestoreService);
+  private gamesFs = inject(GamesFirestoreService);
+  private ngxsFirestoreConnect = inject(NgxsFirestoreConnect);
+  private afs = inject(AngularFirestore);
+  private _store = inject(Store);
+
   @Selector() static results(state: ResultsStateModel) {
     return state.results;
   }
@@ -57,14 +61,6 @@ export class ResultsState implements NgxsOnInit {
   @Selector() static games(state: ResultsStateModel) {
     return state.games;
   }
-
-  constructor(
-    private resultsFs: ResultsFirestoreService,
-    private gamesFs: GamesFirestoreService,
-    private ngxsFirestoreConnect: NgxsFirestoreConnect,
-    private afs: AngularFirestore,
-    private _store: Store
-  ) {}
 
   ngxsOnInit() {
     // query collection

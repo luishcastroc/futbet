@@ -1,0 +1,14 @@
+<ng-container *ngIf="userResults$ | async as userResults">
+  <div class="flex flex-auto flex-col p-6">
+    <p class="text-indigo-100">My results works!!</p>
+    <button
+      role="button"
+      type="submit"
+      (click)="create()"
+      mat-raised-button
+      color="primary"
+      class="w-full h-12">
+      Create
+    </button>
+  </div>
+</ng-container>

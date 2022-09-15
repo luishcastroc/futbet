@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -17,11 +17,11 @@ import { Actions, ofActionCompleted, Store } from '@ngxs/store';
 import firebase from 'firebase/compat/app';
 import { Subject, takeUntil } from 'rxjs';
 
-import { FirebaseAuthService } from '../../core/auth/services/firebase-auth.service';
 import {
+  FirebaseAuthService,
   LoginWithEmailAndPassword,
   LoginWithGoogle,
-} from '../../core/auth/store/auth.actions';
+} from '../../core';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -43,16 +43,14 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  private _fb = inject(FormBuilder);
+  private _store = inject(Store);
+  private _toast = inject(HotToastService);
+  private _actions$ = inject(Actions);
+  private _fAuthS = inject(FirebaseAuthService);
+
   loginForm!: FormGroup;
   destroyed = new Subject<void>();
-
-  constructor(
-    private _fb: FormBuilder,
-    private _store: Store,
-    private _toast: HotToastService,
-    private _actions$: Actions,
-    private _fAuthS: FirebaseAuthService
-  ) {}
 
   ngOnInit(): void {
     this.loginForm = this._fb.group({
@@ -60,6 +58,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: ['', [Validators.required]],
     });
 
+    this.subscribeToActions();
+  }
+
+  subscribeToActions(): void {
     this._actions$
       .pipe(
         ofActionCompleted(LoginWithEmailAndPassword, LoginWithGoogle),

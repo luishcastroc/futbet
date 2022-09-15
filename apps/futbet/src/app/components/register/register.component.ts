@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   ReactiveFormsModule,
@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Navigate } from '@ngxs/router-plugin';
 import { Store } from '@ngxs/store';
+
 import { CreateUserWithEmailAndPassword } from '../../core/auth/store/auth.actions';
 import { createPasswordStrengthValidator } from './password-stregth.validator';
 
@@ -28,9 +29,9 @@ import { createPasswordStrengthValidator } from './password-stregth.validator';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  private _store = inject(Store);
+  private _fb = inject(FormBuilder);
   registerForm!: UntypedFormGroup;
-
-  constructor(private _store: Store, private _formBuilder: FormBuilder) {}
 
   get displayName() {
     return this.registerForm.controls['displayName'];
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.registerForm = this._formBuilder.group({
+    this.registerForm = this._fb.group({
       displayName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [

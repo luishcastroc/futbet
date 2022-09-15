@@ -4,7 +4,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   OnDestroy,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,9 +18,7 @@ import { RouterModule } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
-import { Logout } from '../../core/auth/store/auth.actions';
-import { AuthStateModel } from '../../core/auth/store/auth.model';
-import { AuthState } from '../../core/auth/store/auth.state';
+import { AuthState, AuthStateModel, Logout } from '../../core';
 
 @Component({
   selector: 'futbet-dashboard',
@@ -37,10 +37,13 @@ import { AuthState } from '../../core/auth/store/auth.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class DashboardComponent implements OnDestroy {
-  destroyed = new Subject<void>();
+export class DashboardComponent implements OnInit, OnDestroy {
+  private _store = inject(Store);
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _cdr = inject(ChangeDetectorRef);
+  private destroyed = new Subject<void>();
   currentScreenSize!: string;
-  user$!: Observable<AuthStateModel>;
+  user$: Observable<AuthStateModel> = this._store.select(AuthState.user);
   hideGreeting = false;
 
   // Create a map to display breakpoint names for demonstration purposes.
@@ -52,14 +55,8 @@ export class DashboardComponent implements OnDestroy {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
-  constructor(
-    private _store: Store,
-    _breakpointObserver: BreakpointObserver,
-    private _cdr: ChangeDetectorRef
-  ) {
-    this.user$ = this._store.select(AuthState.user);
-
-    _breakpointObserver
+  ngOnInit(): void {
+    this._breakpointObserver
       .observe([
         Breakpoints.XSmall,
         Breakpoints.Small,

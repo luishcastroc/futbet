@@ -4,11 +4,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Store } from '@ngxs/store';
 import { combineLatest, map, Observable } from 'rxjs';
 
-import { AuthState } from '../../core/auth/store/auth.state';
-import { Game } from '../../core/result.model';
-import { worldCupGames } from '../../core/world-cup';
-import { GetAllGames, SeedGames } from '../../store/results.actions';
-import { ResultsState } from '../../store/results.state';
+import { AuthState, Game, worldCupGames } from '../../core';
+import { GetAllGames, ResultsState, SeedGames } from '../../store';
 
 @Component({
   selector: 'futbet-games',

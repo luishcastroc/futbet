@@ -1,6 +1,6 @@
 import 'firebase/auth';
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { user } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
@@ -37,6 +37,11 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 @Injectable()
 export class AuthState implements NgxsOnInit {
+  private afAuth = inject(AngularFireAuth);
+  private ngxsFirestoreConnect = inject(NgxsFirestoreConnect);
+  private usersFs = inject(UsersFirestoreService);
+  private afs = inject(AngularFirestore);
+
   @Selector() static loggedIn(state: AuthStateModel) {
     return !!state.email;
   }
@@ -64,13 +69,6 @@ export class AuthState implements NgxsOnInit {
   @Selector() static photoURL(state: AuthStateModel) {
     return state.photoURL;
   }
-
-  constructor(
-    private afAuth: AngularFireAuth,
-    private ngxsFirestoreConnect: NgxsFirestoreConnect,
-    private usersFs: UsersFirestoreService,
-    private afs: AngularFirestore
-  ) {}
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
     this.ngxsFirestoreConnect.connect(GetAuthState, {
