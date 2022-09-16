@@ -12,6 +12,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/125px-Flag_of_Senegal.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/125px-Flag_of_the_Netherlands.svg.png',
+    matchDay: 1,
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/125px-Flag_of_England.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
+    matchDay: 1,
   },
   {
     id: 3,
@@ -40,6 +42,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Qatar.svg/125px-Flag_of_Qatar.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Flag_of_Ecuador.svg/125px-Flag_of_Ecuador.svg.png',
+    matchDay: 1,
   },
   {
     id: 4,
@@ -54,6 +57,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Wales_%281959%29.svg/125px-Flag_of_Wales_%281959%29.svg.png',
+    matchDay: 1,
   },
   {
     id: 5,
@@ -68,6 +72,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/125px-Flag_of_Argentina.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/125px-Flag_of_Saudi_Arabia.svg.png',
+    matchDay: 2,
   },
   {
     id: 6,
@@ -82,6 +87,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/125px-Flag_of_Denmark.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Tunisia.svg/125px-Flag_of_Tunisia.svg.png',
+    matchDay: 2,
   },
   {
     id: 7,
@@ -96,6 +102,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/125px-Flag_of_Mexico.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/125px-Flag_of_Poland.svg.png',
+    matchDay: 2,
   },
   {
     id: 8,
@@ -110,6 +117,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/125px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/125px-Flag_of_Australia_%28converted%29.svg.png',
+    matchDay: 2,
   },
   {
     id: 9,
@@ -124,6 +132,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/125px-Flag_of_Morocco.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/125px-Flag_of_Croatia.svg.png',
+    matchDay: 3,
   },
   {
     id: 10,
@@ -138,6 +147,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/125px-Flag_of_Japan.svg.png',
+    matchDay: 3,
   },
   {
     id: 11,
@@ -152,6 +162,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica_%28state%29.svg/125px-Flag_of_Costa_Rica_%28state%29.svg.png',
+    matchDay: 3,
   },
   {
     id: 12,
@@ -166,6 +177,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Belgium.svg/125px-Flag_of_Belgium.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/125px-Flag_of_Canada_%28Pantone%29.svg.png',
+    matchDay: 3,
   },
   {
     id: 13,
@@ -180,6 +192,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Flag_of_Serbia.svg/125px-Flag_of_Serbia.svg.png',
+    matchDay: 4,
   },
   {
     id: 14,
@@ -194,6 +207,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/125px-Flag_of_Portugal.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/125px-Flag_of_Ghana.svg.png',
+    matchDay: 4,
   },
   {
     id: 15,
@@ -208,6 +222,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Uruguay.svg/125px-Flag_of_Uruguay.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/125px-Flag_of_South_Korea.svg.png',
+    matchDay: 4,
   },
   {
     id: 16,
@@ -222,6 +237,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/100px-Flag_of_Switzerland.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/125px-Flag_of_Cameroon.svg.png',
+    matchDay: 4,
   },
   {
     id: 17,
@@ -236,6 +252,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Wales_%281959%29.svg/125px-Flag_of_Wales_%281959%29.svg.png',
+    matchDay: 5,
   },
   {
     id: 18,
@@ -250,6 +267,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Qatar.svg/125px-Flag_of_Qatar.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/125px-Flag_of_Senegal.svg.png',
+    matchDay: 5,
   },
   {
     id: 19,
@@ -264,6 +282,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/125px-Flag_of_the_Netherlands.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Flag_of_Ecuador.svg/125px-Flag_of_Ecuador.svg.png',
+    matchDay: 5,
   },
   {
     id: 20,
@@ -278,6 +297,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/125px-Flag_of_England.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png',
+    matchDay: 5,
   },
   {
     id: 21,
@@ -292,6 +312,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Tunisia.svg/125px-Flag_of_Tunisia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/125px-Flag_of_Australia_%28converted%29.svg.png',
+    matchDay: 6,
   },
   {
     id: 22,
@@ -306,6 +327,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/125px-Flag_of_Poland.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/125px-Flag_of_Saudi_Arabia.svg.png',
+    matchDay: 6,
   },
   {
     id: 23,
@@ -320,6 +342,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/125px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/125px-Flag_of_Denmark.svg.png',
+    matchDay: 6,
   },
   {
     id: 24,
@@ -334,6 +357,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/125px-Flag_of_Argentina.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/125px-Flag_of_Mexico.svg.png',
+    matchDay: 6,
   },
   {
     id: 25,
@@ -348,6 +372,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/125px-Flag_of_Japan.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica_%28state%29.svg/125px-Flag_of_Costa_Rica_%28state%29.svg.png',
+    matchDay: 7,
   },
   {
     id: 26,
@@ -362,6 +387,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Belgium.svg/125px-Flag_of_Belgium.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/125px-Flag_of_Morocco.svg.png',
+    matchDay: 7,
   },
   {
     id: 27,
@@ -376,6 +402,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/125px-Flag_of_Croatia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/125px-Flag_of_Canada_%28Pantone%29.svg.png',
+    matchDay: 7,
   },
   {
     id: 28,
@@ -390,6 +417,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png',
+    matchDay: 7,
   },
   {
     id: 29,
@@ -404,6 +432,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Flag_of_Serbia.svg/125px-Flag_of_Serbia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/125px-Flag_of_Cameroon.svg.png',
+    matchDay: 8,
   },
   {
     id: 30,
@@ -418,6 +447,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/125px-Flag_of_South_Korea.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/125px-Flag_of_Ghana.svg.png',
+    matchDay: 8,
   },
   {
     id: 31,
@@ -432,6 +462,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/100px-Flag_of_Switzerland.svg.png',
+    matchDay: 8,
   },
   {
     id: 32,
@@ -446,6 +477,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/125px-Flag_of_Portugal.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Uruguay.svg/125px-Flag_of_Uruguay.svg.png',
+    matchDay: 8,
   },
   {
     id: 33,
@@ -460,6 +492,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/125px-Flag_of_England.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Wales_%281959%29.svg/125px-Flag_of_Wales_%281959%29.svg.png',
+    matchDay: 9,
   },
   {
     id: 34,
@@ -474,6 +507,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png',
+    matchDay: 9,
   },
   {
     id: 35,
@@ -488,6 +522,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Flag_of_Ecuador.svg/125px-Flag_of_Ecuador.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/125px-Flag_of_Senegal.svg.png',
+    matchDay: 9,
   },
   {
     id: 36,
@@ -502,6 +537,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/125px-Flag_of_the_Netherlands.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Qatar.svg/125px-Flag_of_Qatar.svg.png',
+    matchDay: 9,
   },
   {
     id: 37,
@@ -516,6 +552,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/125px-Flag_of_Denmark.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/125px-Flag_of_Australia_%28converted%29.svg.png',
+    matchDay: 10,
   },
   {
     id: 38,
@@ -530,6 +567,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Tunisia.svg/125px-Flag_of_Tunisia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/125px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png',
+    matchDay: 10,
   },
   {
     id: 39,
@@ -544,6 +582,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/125px-Flag_of_Poland.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/125px-Flag_of_Argentina.svg.png',
+    matchDay: 10,
   },
   {
     id: 40,
@@ -558,6 +597,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/125px-Flag_of_Saudi_Arabia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/125px-Flag_of_Mexico.svg.png',
+    matchDay: 10,
   },
   {
     id: 41,
@@ -572,6 +612,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/125px-Flag_of_Croatia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Belgium.svg/125px-Flag_of_Belgium.svg.png',
+    matchDay: 11,
   },
   {
     id: 42,
@@ -586,6 +627,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/125px-Flag_of_Canada_%28Pantone%29.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/125px-Flag_of_Morocco.svg.png',
+    matchDay: 11,
   },
   {
     id: 43,
@@ -600,6 +642,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/125px-Flag_of_Japan.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png',
+    matchDay: 11,
   },
   {
     id: 44,
@@ -614,6 +657,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica_%28state%29.svg/125px-Flag_of_Costa_Rica_%28state%29.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png',
+    matchDay: 11,
   },
   {
     id: 45,
@@ -628,6 +672,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/125px-Flag_of_Ghana.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Uruguay.svg/125px-Flag_of_Uruguay.svg.png',
+    matchDay: 12,
   },
   {
     id: 46,
@@ -642,6 +687,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/125px-Flag_of_South_Korea.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/125px-Flag_of_Portugal.svg.png',
+    matchDay: 12,
   },
   {
     id: 47,
@@ -656,6 +702,7 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Flag_of_Serbia.svg/125px-Flag_of_Serbia.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/100px-Flag_of_Switzerland.svg.png',
+    matchDay: 12,
   },
   {
     id: 48,
@@ -670,5 +717,6 @@ export const worldCupGames = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png',
     awayFlag:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/125px-Flag_of_Cameroon.svg.png',
+    matchDay: 12,
   },
 ];

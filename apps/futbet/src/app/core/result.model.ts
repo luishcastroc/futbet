@@ -7,6 +7,7 @@ export interface Result {
   homeScore: number;
   awayScore: number;
   goldenBall: boolean;
+  matchDay: number;
 }
 
 export interface Game {
@@ -20,6 +21,7 @@ export interface Game {
   awayTeamEs: string;
   homeFlag: string;
   awayFlag: string;
+  matchDay: number;
 }
 
 export interface Results {

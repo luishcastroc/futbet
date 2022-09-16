@@ -9,12 +9,14 @@ import {
 } from '@angular/core';
 import {
   FormArray,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -36,6 +38,7 @@ import { Create, GetAllGames, GetUserResults, ResultsState } from '../../store';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
   ],
   templateUrl: './my-results.component.html',
   styleUrls: ['./my-results.component.scss'],
@@ -58,6 +61,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   resultsForm!: FormGroup;
   resultsGroup!: FormGroup;
   dateBeforeWc = this.today < this.wcDate;
+  edit = false;
 
   get results() {
     return this.resultsForm.get('results') as FormArray;
@@ -77,12 +81,21 @@ export class MyResultsComponent implements OnInit, OnDestroy {
       }),
       mergeMap(id =>
         this._store.select(ResultsState.userResults).pipe(
-          mergeMap(results =>
+          mergeMap(userResults =>
             this._store.select(ResultsState.games).pipe(
               map(games => {
                 this.games = games;
-                if (results) {
-                  this.resultsForm.patchValue(results);
+                if (userResults) {
+                  const resultsArr = this.results;
+                  if ((resultsArr.value as []).length === 0) {
+                    userResults.results.forEach(() => {
+                      this.resultsGroup =
+                        this._resultsService.getResultsGroup();
+                      resultsArr.push(this.resultsGroup);
+                    });
+                  }
+                  this.resultsForm.patchValue(userResults);
+                  this.edit = true;
                 } else {
                   const resultsArr = this.results;
                   if (
@@ -94,11 +107,13 @@ export class MyResultsComponent implements OnInit, OnDestroy {
                         this._resultsService.getResultsGroup();
                       resultsArr.push(this.resultsGroup);
                       resultsArr.at(i).patchValue(game);
+                      resultsArr.at(i).get('homeScore')?.patchValue(null);
+                      resultsArr.at(i).get('awayScore')?.patchValue(null);
                     });
                   }
                 }
                 this.resultsForm.get('userId')?.patchValue(id);
-                return results;
+                return userResults;
               })
             )
           )
@@ -137,26 +152,52 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   }
 
   create(): void {
-    const results: Results = {
-      userId: this.resultsForm.get('userId')?.value,
-      generationDate: DateTime.now().toJSDate(),
-      updateDate: DateTime.now().toJSDate(),
-      results: [
-        {
-          id: 1,
-          homeTeamId: 1,
-          awayTeamId: 2,
-          homeScore: 1,
-          awayScore: 2,
-          goldenBall: false,
-        },
-      ],
-    };
-    this._store.dispatch(new Create(results));
+    const message = this._resultsService.checkGoldenBall(this.results);
+    if (message) {
+      this._toast.warning(message, {
+        autoClose: false,
+        dismissible: true,
+        icon: '❎',
+      });
+    } else {
+      this._store.dispatch(new Create(this.resultsForm.value));
+    }
+  }
+
+  update(): void {
+    console.log(this.resultsForm.value);
   }
 
   resetResults() {
-    throw new Error('Method not implemented.');
+    for (const control of this.results.controls) {
+      if (control instanceof FormGroup) {
+        control.get('homeScore')?.reset();
+        control.get('awayScore')?.reset();
+      }
+    }
+  }
+
+  goldenBall(index: number, matchDay: number) {
+    if (this.results.at(index).get('goldenBall')?.value) {
+      this.results.at(index).get('goldenBall')?.patchValue(false);
+    } else {
+      for (const i in this.results.controls) {
+        const group = this.results.at(Number(i));
+        if (group) {
+          const matchDayCtrl = group.get('matchDay');
+          const goldenBall = group.get('goldenBall');
+          if (matchDayCtrl && goldenBall) {
+            if (matchDayCtrl.value === matchDay) {
+              if (index !== Number(i)) {
+                goldenBall.patchValue(false);
+              } else {
+                goldenBall.patchValue(true);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   ngOnDestroy(): void {
