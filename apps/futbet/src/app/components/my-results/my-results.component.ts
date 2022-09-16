@@ -5,6 +5,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   FormArray,
@@ -13,6 +14,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Actions, ofActionCompleted, Store } from '@ngxs/store';
 import { DateTime } from 'luxon';
@@ -24,10 +28,19 @@ import { Create, GetAllGames, GetUserResults, ResultsState } from '../../store';
 @Component({
   selector: 'futbet-my-results',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './my-results.component.html',
   styleUrls: ['./my-results.component.scss'],
   providers: [ResultsService],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MyResultsComponent implements OnInit, OnDestroy {
   private _store = inject(Store);
@@ -43,7 +56,12 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   today = DateTime.now().toLocal();
   wcDate = DateTime.fromISO('2022-11-20');
   resultsForm!: FormGroup;
+  resultsGroup!: FormGroup;
   dateBeforeWc = this.today < this.wcDate;
+
+  get results() {
+    return this.resultsForm.get('results') as FormArray;
+  }
 
   ngOnInit(): void {
     this.resultsForm = this._resultsService.generateResultsForm();
@@ -62,18 +80,19 @@ export class MyResultsComponent implements OnInit, OnDestroy {
           mergeMap(results =>
             this._store.select(ResultsState.games).pipe(
               map(games => {
+                this.games = games;
                 if (results) {
                   this.resultsForm.patchValue(results);
                 } else {
-                  const resultsArr = this.resultsForm.get(
-                    'results'
-                  ) as FormArray;
+                  const resultsArr = this.results;
                   if (
                     games.length > 0 &&
                     (resultsArr.value as []).length === 0
                   ) {
                     games.forEach((game, i) => {
-                      resultsArr.push(this._resultsService.getResultsGroup());
+                      this.resultsGroup =
+                        this._resultsService.getResultsGroup();
+                      resultsArr.push(this.resultsGroup);
                       resultsArr.at(i).patchValue(game);
                     });
                   }
@@ -134,6 +153,10 @@ export class MyResultsComponent implements OnInit, OnDestroy {
       ],
     };
     this._store.dispatch(new Create(results));
+  }
+
+  resetResults() {
+    throw new Error('Method not implemented.');
   }
 
   ngOnDestroy(): void {
