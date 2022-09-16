@@ -3,14 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Injectable,
   OnInit,
 } from '@angular/core';
 import { Actions, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 import { AuthState } from '../../core/auth/store/auth.state';
-import { GetAll } from '../../store/results.actions';
 
 @Component({
   selector: 'futbet-results',
@@ -27,6 +25,6 @@ export class ResultsComponent implements OnInit {
   userId$: Observable<string | null> = this._store.select(AuthState.uid);
 
   ngOnInit(): void {
-    this._store.dispatch(new GetAll());
+    console.log('results');
   }
 }

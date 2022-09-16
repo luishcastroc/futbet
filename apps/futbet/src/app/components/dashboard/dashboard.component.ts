@@ -19,6 +19,7 @@ import { Store } from '@ngxs/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { AuthState, AuthStateModel, Logout } from '../../core';
+import { GetAll } from '../../store';
 
 @Component({
   selector: 'futbet-dashboard',
@@ -56,6 +57,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ]);
 
   ngOnInit(): void {
+    this._store.dispatch(new GetAll());
+
     this._breakpointObserver
       .observe([
         Breakpoints.XSmall,
