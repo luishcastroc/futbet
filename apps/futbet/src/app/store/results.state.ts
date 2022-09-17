@@ -28,6 +28,7 @@ import {
   SeedGames,
 } from './results.actions';
 import { ResultsStateModel } from './results.model';
+import firebase from 'firebase/compat/app';
 
 @State<ResultsStateModel>({
   name: 'results',
@@ -95,15 +96,15 @@ export class ResultsState implements NgxsOnInit {
     ctx: StateContext<ResultsStateModel>,
     { payload }: GetUserResults
   ) {
-    const state = ctx.getState();
-    const results = [...state.results];
-    const idx = results.findIndex(result => result.userId === payload);
-    if (idx !== -1) {
-      const userResults = results[idx];
-      ctx.patchState({ userResults });
-    } else {
-      ctx.patchState({ userResults: undefined });
-    }
+    return this.resultsFs
+      .collection$(ref => ref.where('userId', '==', payload))
+      .pipe(
+        tap(result => {
+          if (result.length > 0) {
+            ctx.patchState({ userResults: result[0] });
+          }
+        })
+      );
   }
 
   //Create

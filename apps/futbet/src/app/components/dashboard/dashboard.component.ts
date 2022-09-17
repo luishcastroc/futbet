@@ -57,8 +57,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ]);
 
   ngOnInit(): void {
-    this._store.dispatch(new GetAll());
-
     this._breakpointObserver
       .observe([
         Breakpoints.XSmall,

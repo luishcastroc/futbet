@@ -9,6 +9,7 @@ import { Actions, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 import { AuthState } from '../../core/auth/store/auth.state';
+import { GetAll } from '../../store';
 
 @Component({
   selector: 'futbet-results',
@@ -25,6 +26,6 @@ export class ResultsComponent implements OnInit {
   userId$: Observable<string | null> = this._store.select(AuthState.uid);
 
   ngOnInit(): void {
-    console.log('results');
+    this._store.dispatch(new GetAll());
   }
 }

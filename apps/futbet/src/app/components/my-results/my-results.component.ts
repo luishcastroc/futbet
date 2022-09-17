@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Navigate } from '@ngxs/router-plugin';
 import { Actions, ofActionCompleted, Store } from '@ngxs/store';
 import { DateTime } from 'luxon';
 import { map, mergeMap, Observable, Subject, takeUntil, tap } from 'rxjs';
@@ -166,6 +167,14 @@ export class MyResultsComponent implements OnInit, OnDestroy {
 
   update(): void {
     console.log(this.resultsForm.value);
+  }
+
+  cancel(): void {
+    if (this.edit) {
+      this._store.dispatch(new Navigate(['/dashboard']));
+    } else {
+      this.resetResults();
+    }
   }
 
   resetResults() {

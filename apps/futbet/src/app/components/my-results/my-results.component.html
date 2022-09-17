@@ -5,7 +5,7 @@
       [formGroup]="resultsForm"
       class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:container items-center justify-center flex-auto">
       <div
-        class="w-full bg-gray-100/75 shadow-lg rounded lg:px-10 sm:px-6 sm:py-10 px-2 py-6 flex flex-col lg:flex-row lg:flex-wrap md:justify-center gap-8 items-center max-h-[40rem] overflow-y-auto">
+        class="w-[90vw] bg-gray-100/75 shadow-lg rounded lg:px-0 sm:px-6 sm:py-10 px-2 py-6 flex flex-col lg:flex-row lg:flex-wrap md:justify-center gap-8 items-center max-h-[40rem] overflow-y-auto">
         <!-- Content -->
         <ng-container formArrayName="results" *ngIf="games.length > 0">
           <ng-container *ngFor="let result of results.controls; let i = index">
@@ -14,7 +14,7 @@
               [formGroupName]="i">
               <!-- team 1 -->
               <div
-                class="text-center flex flex-col items-center justify-center max-w-[130px] md:max-w-max">
+                class="text-center flex flex-col items-center justify-center max-w-[145px] md:max-w-max">
                 <img
                   src="{{ games[i].homeFlag }}"
                   alt="Bandera de {{ games[i].homeTeamEs }}"
@@ -44,7 +44,7 @@
               </div>
               <!-- team 2 -->
               <div
-                class="text-center flex flex-col items-center justify-center max-w-[130px] md:max-w-max">
+                class="text-center flex flex-col items-center justify-center max-w-[145px] md:max-w-max">
                 <img
                   src="{{ games[i].awayFlag }}"
                   alt="Bandera de {{ games[i].awayTeamEs }}"
@@ -80,7 +80,7 @@
       <button
         role="button"
         type="reset"
-        (click)="resetResults()"
+        (click)="cancel()"
         mat-raised-button
         class="w-1/3 max-w-[120px] h-12 bg-slate-200 hover:bg-slate-400 hover:text-cyan-50">
         Cancelar
