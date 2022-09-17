@@ -2,6 +2,7 @@ export const worldCupGames = [
   {
     id: 1,
     group: 'A',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 3,
     awayTeamId: 4,
     homeScore: 0,
@@ -17,6 +18,7 @@ export const worldCupGames = [
   {
     id: 2,
     group: 'B',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 5,
     awayTeamId: 6,
     homeScore: 0,
@@ -32,6 +34,7 @@ export const worldCupGames = [
   {
     id: 3,
     group: 'A',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 1,
     awayTeamId: 2,
     homeScore: 0,
@@ -47,6 +50,7 @@ export const worldCupGames = [
   {
     id: 4,
     group: 'B',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 7,
     awayTeamId: 8,
     homeScore: 0,
@@ -62,6 +66,7 @@ export const worldCupGames = [
   {
     id: 5,
     group: 'C',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 9,
     awayTeamId: 10,
     homeScore: 0,
@@ -77,6 +82,7 @@ export const worldCupGames = [
   {
     id: 6,
     group: 'D',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 11,
     awayTeamId: 12,
     homeScore: 0,
@@ -92,6 +98,7 @@ export const worldCupGames = [
   {
     id: 7,
     group: 'C',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 13,
     awayTeamId: 14,
     homeScore: 0,
@@ -107,6 +114,7 @@ export const worldCupGames = [
   {
     id: 8,
     group: 'D',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 15,
     awayTeamId: 16,
     homeScore: 0,
@@ -122,6 +130,7 @@ export const worldCupGames = [
   {
     id: 9,
     group: 'F',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 17,
     awayTeamId: 18,
     homeScore: 0,
@@ -137,6 +146,7 @@ export const worldCupGames = [
   {
     id: 10,
     group: 'E',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 19,
     awayTeamId: 20,
     homeScore: 0,
@@ -152,6 +162,7 @@ export const worldCupGames = [
   {
     id: 11,
     group: 'E',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 21,
     awayTeamId: 22,
     homeScore: 0,
@@ -167,6 +178,7 @@ export const worldCupGames = [
   {
     id: 12,
     group: 'F',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 23,
     awayTeamId: 24,
     homeScore: 0,
@@ -182,6 +194,7 @@ export const worldCupGames = [
   {
     id: 13,
     group: 'G',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 25,
     awayTeamId: 26,
     homeScore: 0,
@@ -197,6 +210,7 @@ export const worldCupGames = [
   {
     id: 14,
     group: 'H',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 27,
     awayTeamId: 28,
     homeScore: 0,
@@ -212,6 +226,7 @@ export const worldCupGames = [
   {
     id: 15,
     group: 'H',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 29,
     awayTeamId: 30,
     homeScore: 0,
@@ -227,6 +242,7 @@ export const worldCupGames = [
   {
     id: 16,
     group: 'G',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 31,
     awayTeamId: 32,
     homeScore: 0,
@@ -242,6 +258,7 @@ export const worldCupGames = [
   {
     id: 17,
     group: 'B',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 6,
     awayTeamId: 8,
     homeScore: 0,
@@ -257,6 +274,7 @@ export const worldCupGames = [
   {
     id: 18,
     group: 'A',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 1,
     awayTeamId: 3,
     homeScore: 0,
@@ -272,6 +290,7 @@ export const worldCupGames = [
   {
     id: 19,
     group: 'A',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 4,
     awayTeamId: 2,
     homeScore: 0,
@@ -287,6 +306,7 @@ export const worldCupGames = [
   {
     id: 20,
     group: 'B',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 5,
     awayTeamId: 7,
     homeScore: 0,
@@ -302,6 +322,7 @@ export const worldCupGames = [
   {
     id: 21,
     group: 'D',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 12,
     awayTeamId: 16,
     homeScore: 0,
@@ -317,6 +338,7 @@ export const worldCupGames = [
   {
     id: 22,
     group: 'C',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 14,
     awayTeamId: 10,
     homeScore: 0,
@@ -332,6 +354,7 @@ export const worldCupGames = [
   {
     id: 23,
     group: 'D',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 15,
     awayTeamId: 11,
     homeScore: 0,
@@ -347,6 +370,7 @@ export const worldCupGames = [
   {
     id: 24,
     group: 'C',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 9,
     awayTeamId: 13,
     homeScore: 0,
@@ -362,6 +386,7 @@ export const worldCupGames = [
   {
     id: 25,
     group: 'E',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 20,
     awayTeamId: 22,
     homeScore: 0,
@@ -377,6 +402,7 @@ export const worldCupGames = [
   {
     id: 26,
     group: 'F',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 23,
     awayTeamId: 17,
     homeScore: 0,
@@ -392,6 +418,7 @@ export const worldCupGames = [
   {
     id: 27,
     group: 'F',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 18,
     awayTeamId: 24,
     homeScore: 0,
@@ -407,6 +434,7 @@ export const worldCupGames = [
   {
     id: 28,
     group: 'E',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 21,
     awayTeamId: 19,
     homeScore: 0,
@@ -422,6 +450,7 @@ export const worldCupGames = [
   {
     id: 29,
     group: 'G',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 26,
     awayTeamId: 32,
     homeScore: 0,
@@ -437,6 +466,7 @@ export const worldCupGames = [
   {
     id: 30,
     group: 'H',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 30,
     awayTeamId: 28,
     homeScore: 0,
@@ -452,6 +482,7 @@ export const worldCupGames = [
   {
     id: 31,
     group: 'G',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 25,
     awayTeamId: 31,
     homeScore: 0,
@@ -467,6 +498,7 @@ export const worldCupGames = [
   {
     id: 32,
     group: 'H',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 27,
     awayTeamId: 29,
     homeScore: 0,
@@ -482,6 +514,7 @@ export const worldCupGames = [
   {
     id: 33,
     group: 'B',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 5,
     awayTeamId: 8,
     homeScore: 0,
@@ -497,6 +530,7 @@ export const worldCupGames = [
   {
     id: 34,
     group: 'B',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 6,
     awayTeamId: 7,
     homeScore: 0,
@@ -512,6 +546,7 @@ export const worldCupGames = [
   {
     id: 35,
     group: 'A',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 2,
     awayTeamId: 3,
     homeScore: 0,
@@ -527,6 +562,7 @@ export const worldCupGames = [
   {
     id: 36,
     group: 'A',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 4,
     awayTeamId: 1,
     homeScore: 0,
@@ -542,6 +578,7 @@ export const worldCupGames = [
   {
     id: 37,
     group: 'D',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 11,
     awayTeamId: 16,
     homeScore: 0,
@@ -557,6 +594,7 @@ export const worldCupGames = [
   {
     id: 38,
     group: 'D',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 12,
     awayTeamId: 15,
     homeScore: 0,
@@ -572,6 +610,7 @@ export const worldCupGames = [
   {
     id: 39,
     group: 'C',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 14,
     awayTeamId: 9,
     homeScore: 0,
@@ -587,6 +626,7 @@ export const worldCupGames = [
   {
     id: 40,
     group: 'C',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 10,
     awayTeamId: 13,
     homeScore: 0,
@@ -602,6 +642,7 @@ export const worldCupGames = [
   {
     id: 41,
     group: 'F',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 18,
     awayTeamId: 23,
     homeScore: 0,
@@ -617,6 +658,7 @@ export const worldCupGames = [
   {
     id: 42,
     group: 'F',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 24,
     awayTeamId: 17,
     homeScore: 0,
@@ -632,6 +674,7 @@ export const worldCupGames = [
   {
     id: 43,
     group: 'E',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 20,
     awayTeamId: 21,
     homeScore: 0,
@@ -647,6 +690,7 @@ export const worldCupGames = [
   {
     id: 44,
     group: 'E',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 22,
     awayTeamId: 19,
     homeScore: 0,
@@ -662,6 +706,7 @@ export const worldCupGames = [
   {
     id: 45,
     group: 'G',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 28,
     awayTeamId: 29,
     homeScore: 0,
@@ -677,6 +722,7 @@ export const worldCupGames = [
   {
     id: 46,
     group: 'G',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 30,
     awayTeamId: 27,
     homeScore: 0,
@@ -692,6 +738,7 @@ export const worldCupGames = [
   {
     id: 47,
     group: 'H',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 26,
     awayTeamId: 31,
     homeScore: 0,
@@ -707,6 +754,7 @@ export const worldCupGames = [
   {
     id: 48,
     group: 'H',
+    gameStatus: 'NOT STARTED',
     homeTeamId: 25,
     awayTeamId: 32,
     homeScore: 0,

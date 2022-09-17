@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import {
   FormArray,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -24,6 +23,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Actions, ofActionCompleted, Store } from '@ngxs/store';
 import { DateTime } from 'luxon';
 import { map, mergeMap, Observable, Subject, takeUntil, tap } from 'rxjs';
+
 import { AuthState, Game, Results } from '../../core';
 import { ResultsService } from '../../services';
 import { Create, GetAllGames, GetUserResults, ResultsState } from '../../store';
@@ -58,7 +58,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   userResults$!: Observable<Results | undefined>;
   games: Game[] = [];
   today = DateTime.now().toLocal();
-  wcDate = DateTime.fromISO('2022-11-20');
+  wcDate = DateTime.fromISO('2022-11-20'); //world cup starts on 2022-11-20
   resultsForm!: FormGroup;
   resultsGroup!: FormGroup;
   dateBeforeWc = this.today < this.wcDate;
@@ -97,6 +97,9 @@ export class MyResultsComponent implements OnInit, OnDestroy {
                   }
                   this.resultsForm.patchValue(userResults);
                   this.edit = true;
+                  if (this.today >= this.wcDate) {
+                    this.resultsForm.disable();
+                  }
                 } else {
                   const resultsArr = this.results;
                   if (
@@ -161,7 +164,9 @@ export class MyResultsComponent implements OnInit, OnDestroy {
         icon: '❎',
       });
     } else {
-      this._store.dispatch(new Create(this.resultsForm.value));
+      const results = this.resultsForm.value as Results;
+      delete results.id;
+      this._store.dispatch(new Create(results));
     }
   }
 

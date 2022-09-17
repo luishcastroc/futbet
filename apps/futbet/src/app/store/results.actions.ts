@@ -14,6 +14,11 @@ export class Create {
   constructor(public payload: Results) {}
 }
 
+export class Update {
+  public static readonly type = '[Results] Update';
+  constructor(public payload: Results) {}
+}
+
 export class SeedGames {
   public static readonly type = '[Games] SeedGames';
   constructor(public payload: Game) {}
@@ -25,4 +30,8 @@ export class GetAllGames {
 
 export class ClearResultsState {
   public static readonly type = '[Games] ClearResultsState';
+}
+
+export class ClearUserResults {
+  public static readonly type = '[Games] ClearUserResults';
 }

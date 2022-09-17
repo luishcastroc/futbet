@@ -10,6 +10,7 @@ export class ResultsService {
 
   generateResultsForm(): FormGroup {
     const resultsForm = this._fb.group({
+      id: [Validators.required],
       userId: ['', Validators.required],
       generationDate: [DateTime.now().toLocal().toJSDate()],
       results: this._fb.array([]),

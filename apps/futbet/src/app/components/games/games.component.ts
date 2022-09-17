@@ -22,6 +22,7 @@ export class GamesComponent implements OnInit {
 
   ngOnInit(): void {
     this._store.dispatch(new GetAllGames());
+
     this.games$ = combineLatest([
       this._store.select(ResultsState.games),
       this._store.select(AuthState.loggedIn),

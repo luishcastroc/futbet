@@ -21,6 +21,7 @@ import { Game, Results } from '../core';
 import { GamesFirestoreService, ResultsFirestoreService } from '../services';
 import {
   ClearResultsState,
+  ClearUserResults,
   Create,
   GetAll,
   GetAllGames,
@@ -28,7 +29,6 @@ import {
   SeedGames,
 } from './results.actions';
 import { ResultsStateModel } from './results.model';
-import firebase from 'firebase/compat/app';
 
 @State<ResultsStateModel>({
   name: 'results',
@@ -144,15 +144,15 @@ export class ResultsState implements NgxsOnInit {
         patchState({ games });
       })
     );
-    // return this.gamesFs.collection$(ref => {
-    //   let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
-    //   if (size) { query = query.where('size', '==', size) };
-    //   if (color) { query = query.where('color', '==', color) };
-    //   return query;);
   }
 
   @Action(ClearResultsState)
   clearResultsState({ patchState }: StateContext<ResultsStateModel>) {
     patchState({ games: [], ranking: [], results: [], userResults: undefined });
+  }
+
+  @Action(ClearUserResults)
+  clearUserResults({ patchState }: StateContext<ResultsStateModel>) {
+    patchState({ userResults: undefined });
   }
 }
