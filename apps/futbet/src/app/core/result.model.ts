@@ -34,6 +34,7 @@ export interface Game {
 export interface Results {
   id?: string;
   userId: string;
+  displayName?: string;
   generationDate: Date;
   updateDate: Date;
   results: Result[];
@@ -42,4 +43,10 @@ export interface Results {
 export interface UserPoints {
   user: User;
   score: number;
+}
+
+export interface FutBetUser {
+  uid: string;
+  displayName: string;
+  email: string;
 }

@@ -17,7 +17,8 @@ import {
 } from '@ngxs/store';
 import { tap, throwError } from 'rxjs';
 
-import { Game, Results } from '../core';
+import { Game, Results, UsersFirestoreService } from '../core';
+import { User } from '../core/auth/user.model';
 import { GamesFirestoreService, ResultsFirestoreService } from '../services';
 import {
   ClearResultsState,
@@ -25,6 +26,7 @@ import {
   Create,
   GetAll,
   GetAllGames,
+  GetAllUsers,
   GetUserResults,
   SeedGames,
 } from './results.actions';
@@ -37,12 +39,14 @@ import { ResultsStateModel } from './results.model';
     results: [],
     ranking: [],
     games: [],
+    users: [],
   },
 })
 @Injectable()
 export class ResultsState implements NgxsOnInit {
   private resultsFs = inject(ResultsFirestoreService);
   private gamesFs = inject(GamesFirestoreService);
+  private usersFs = inject(UsersFirestoreService);
   private ngxsFirestoreConnect = inject(NgxsFirestoreConnect);
   private afs = inject(AngularFirestore);
   private _store = inject(Store);
@@ -63,6 +67,11 @@ export class ResultsState implements NgxsOnInit {
     return state.games;
   }
 
+  @Selector()
+  static users(state: ResultsStateModel) {
+    return state.users;
+  }
+
   ngxsOnInit() {
     // query collection
     this.ngxsFirestoreConnect.connect(GetAll, {
@@ -71,6 +80,10 @@ export class ResultsState implements NgxsOnInit {
 
     this.ngxsFirestoreConnect.connect(GetAllGames, {
       to: () => this.gamesFs.collection$(),
+    });
+
+    this.ngxsFirestoreConnect.connect(GetAllUsers, {
+      to: () => this.usersFs.collection$(),
     });
   }
 
@@ -89,6 +102,15 @@ export class ResultsState implements NgxsOnInit {
   ) {
     const games = payload.sort((a, b) => a.id - b.id);
     ctx.patchState({ games });
+  }
+
+  @Action(StreamEmitted(GetAllUsers))
+  getAllUsersEmitted(
+    ctx: StateContext<ResultsStateModel>,
+    { payload }: Emitted<GetAllUsers, User[]>
+  ) {
+    const users = payload;
+    ctx.patchState({ users });
   }
 
   @Action(GetUserResults)

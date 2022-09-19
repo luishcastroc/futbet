@@ -6,15 +6,22 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { Actions, Store } from '@ngxs/store';
 import { map, Observable, switchMap } from 'rxjs';
 
-import { Results } from '../../core';
+import { Game, Results } from '../../core';
 import { AuthState } from '../../core/auth/store/auth.state';
-import { ClearUserResults, GetAll, ResultsState } from '../../store';
+import {
+  ClearUserResults,
+  GetAll,
+  GetAllGames,
+  GetAllUsers,
+  ResultsState,
+} from '../../store';
 
 @Component({
   selector: 'futbet-results',
@@ -24,6 +31,7 @@ import { ClearUserResults, GetAll, ResultsState } from '../../store';
     MatProgressSpinnerModule,
     MatIconModule,
     MatSelectModule,
+    MatFormFieldModule,
   ],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss'],
@@ -33,22 +41,40 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private _store = inject(Store);
   private actions$ = inject(Actions);
   results$!: Observable<Results[]>;
-  games$ = this._store.select(ResultsState.games);
+  games$!: Observable<Game[]>;
+  displayName$!: Observable<string | undefined>;
   userIndex = 0;
+  userId!: string;
 
   userId$: Observable<string | null> = this._store.select(AuthState.uid);
 
   ngOnInit(): void {
-    this._store.dispatch(new GetAll());
-
+    this._store.dispatch([new GetAll(), new GetAllUsers(), new GetAllGames()]);
+    this.games$ = this._store.select(ResultsState.games);
     this.results$ = this._store.select(AuthState.uid).pipe(
       map(id => id),
       switchMap(id => {
         return this._store
           .select(ResultsState.results)
           .pipe(map(results => results.filter(result => result.userId !== id)));
+      }),
+      switchMap(results => {
+        return this._store.select(ResultsState.users).pipe(
+          map(users => {
+            return results.map(result => {
+              const displayName = users.find(
+                user => user.uid === result.userId
+              )?.displayName;
+              return { ...result, displayName };
+            });
+          })
+        );
       })
     );
+  }
+
+  changeUserResults($event: MatSelectChange) {
+    console.log($event.value);
   }
 
   ngOnDestroy(): void {

@@ -35,3 +35,7 @@ export class ClearResultsState {
 export class ClearUserResults {
   public static readonly type = '[Games] ClearUserResults';
 }
+
+export class GetAllUsers {
+  static type = '[User] GetAllUsers';
+}
