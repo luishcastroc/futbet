@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -32,6 +33,7 @@ import {
     MatIconModule,
     MatSelectModule,
     MatFormFieldModule,
+    FormsModule,
   ],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss'],
@@ -44,9 +46,6 @@ export class ResultsComponent implements OnInit, OnDestroy {
   games$!: Observable<Game[]>;
   displayName$!: Observable<string | undefined>;
   userIndex = 0;
-  userId!: string;
-
-  userId$: Observable<string | null> = this._store.select(AuthState.uid);
 
   ngOnInit(): void {
     this._store.dispatch([new GetAll(), new GetAllUsers(), new GetAllGames()]);
@@ -61,12 +60,16 @@ export class ResultsComponent implements OnInit, OnDestroy {
       switchMap(results => {
         return this._store.select(ResultsState.users).pipe(
           map(users => {
-            return results.map(result => {
-              const displayName = users.find(
-                user => user.uid === result.userId
-              )?.displayName;
-              return { ...result, displayName };
-            });
+            if (users) {
+              return results.map(result => {
+                const displayName = users.find(
+                  user => user.uid === result.userId
+                )?.displayName;
+                return { ...result, displayName };
+              });
+            } else {
+              return [];
+            }
           })
         );
       })
@@ -74,7 +77,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   changeUserResults($event: MatSelectChange) {
-    console.log($event.value);
+    this.userIndex = $event.value;
   }
 
   ngOnDestroy(): void {

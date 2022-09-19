@@ -16,21 +16,20 @@
         <mat-label>Usuarios</mat-label>
         <mat-select
           name="Usuarios"
-          (selectionChange)="changeUserResults($event)">
+          (selectionChange)="changeUserResults($event)"
+          [(ngModel)]="userIndex">
           <mat-option
-            *ngFor="let result of data.results"
-            [value]="result.userId">
+            *ngFor="let result of data.results; let i = index"
+            [value]="i">
             {{ result.displayName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <div>Results {{ data.results?.length }}</div>
-      <div>Games {{ data.games?.length }}</div>
     </div>
     <div
-      class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 2xl:container items-center justify-center flex-auto">
+      class="flex flex-col md:flex-row xl:px-20 md:px-10 sm:px-6 px-4 pb-12 2xl:container items-center justify-center flex-auto">
       <div
-        class="w-[90vw] bg-gray-100/75 shadow-lg rounded lg:px-0 sm:px-6 sm:py-10 px-2 py-6 flex flex-col lg:flex-row lg:flex-wrap md:justify-center gap-8 items-center md:max-h-[50rem] overflow-y-auto">
+        class="w-[90vw] bg-gray-100/75 shadow-lg rounded lg:px-0 sm:px-6 sm:py-10 px-2 py-6 flex flex-col lg:flex-row lg:flex-wrap md:justify-center gap-8 items-center md:max-h-[75vh] overflow-y-auto">
         <!-- Content -->
         <ng-container
           *ngIf="
