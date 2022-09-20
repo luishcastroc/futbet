@@ -8,3 +8,4 @@ export * from './auth/services/firebase-users.service';
 export * from './error.map';
 export * from './result.model';
 export * from './world-cup';
+export * from './ranking.model';

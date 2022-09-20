@@ -1,3 +1,6 @@
-<div class="flex flex-auto flex-col p-6">
-  <p class="text-indigo-100">Ranking works!!</p>
-</div>
+<ng-container *ngIf="data$ | async as ranking">
+  <div class="flex flex-auto flex-col p-6">
+    <p class="text-indigo-100">Ranking works!!</p>
+    <p>{{ ranking | json }}</p>
+  </div>
+</ng-container>

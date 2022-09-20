@@ -81,6 +81,13 @@ export class MyResultsComponent implements OnInit, OnDestroy {
         }
       }),
       mergeMap(id =>
+        this._store.select(AuthState.displayName).pipe(
+          map(displayName => {
+            return { id, displayName };
+          })
+        )
+      ),
+      mergeMap(({ id, displayName }) =>
         this._store.select(ResultsState.userResults).pipe(
           mergeMap(userResults =>
             this._store.select(ResultsState.games).pipe(
@@ -117,6 +124,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
                   }
                 }
                 this.resultsForm.get('userId')?.patchValue(id);
+                this.resultsForm.get('displayName')?.patchValue(displayName);
                 return userResults;
               })
             )

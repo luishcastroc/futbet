@@ -7,10 +7,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { Navigate } from '@ngxs/router-plugin';
 import { Actions, Store } from '@ngxs/store';
 import { map, Observable, switchMap } from 'rxjs';
 
@@ -34,6 +36,8 @@ import {
     MatSelectModule,
     MatFormFieldModule,
     FormsModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss'],
@@ -78,6 +82,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   changeUserResults($event: MatSelectChange) {
     this.userIndex = $event.value;
+  }
+
+  back() {
+    this._store.dispatch(new Navigate(['/dashboard']));
   }
 
   ngOnDestroy(): void {
