@@ -29,6 +29,7 @@ import {
   GetAllUsers,
   GetUserResults,
   SeedGames,
+  Update,
 } from './results.actions';
 import { ResultsStateModel } from './results.model';
 
@@ -143,6 +144,23 @@ export class ResultsState implements NgxsOnInit {
           const userResults = payload;
           ctx.patchState({ userResults });
         })
+      );
+    }
+  }
+
+  //Update
+  @Action(Update)
+  update(ctx: StateContext<ResultsStateModel>, { payload }: Update) {
+    if (payload.id) {
+      return this.resultsFs.update$(payload.id, payload).pipe(
+        tap(() => {
+          const userResults = payload;
+          ctx.patchState({ userResults });
+        })
+      );
+    } else {
+      return throwError(
+        () => new Error('El Id del usuario debe ser incluida, Verificar.')
       );
     }
   }

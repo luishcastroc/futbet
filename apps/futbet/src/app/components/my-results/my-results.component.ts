@@ -26,7 +26,13 @@ import { map, mergeMap, Observable, Subject, takeUntil, tap } from 'rxjs';
 
 import { AuthState, Game, Results } from '../../core';
 import { ResultsService } from '../../services';
-import { Create, GetAllGames, GetUserResults, ResultsState } from '../../store';
+import {
+  Create,
+  GetAllGames,
+  GetUserResults,
+  ResultsState,
+  Update,
+} from '../../store';
 
 @Component({
   selector: 'futbet-my-results',
@@ -138,7 +144,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
 
   subscribeToActions(): void {
     this.actions$
-      .pipe(ofActionCompleted(Create), takeUntil(this._unsubscribeAll))
+      .pipe(ofActionCompleted(Create, Update), takeUntil(this._unsubscribeAll))
       .subscribe(result => {
         const { error, successful } = result.result;
         const { action } = result;
@@ -154,11 +160,14 @@ export class MyResultsComponent implements OnInit, OnDestroy {
         if (successful) {
           if (action instanceof Create) {
             message = 'Resultados agregados exitosamente.';
-            this._toast.success(message, {
-              duration: 4000,
-              position: 'bottom-center',
-            });
           }
+          if (action instanceof Update) {
+            message = 'Resultados actualizados exitosamente.';
+          }
+          this._toast.success(message, {
+            duration: 4000,
+            position: 'bottom-center',
+          });
         }
       });
   }
@@ -179,7 +188,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   }
 
   update(): void {
-    console.log(this.resultsForm.value);
+    this._store.dispatch(new Update(this.resultsForm.value));
   }
 
   cancel(): void {
