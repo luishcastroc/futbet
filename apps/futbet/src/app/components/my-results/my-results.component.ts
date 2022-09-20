@@ -9,9 +9,11 @@ import {
 } from '@angular/core';
 import {
   FormArray,
+  FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -59,6 +61,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   private _cdr = inject(ChangeDetectorRef);
   private _toast = inject(HotToastService);
   private _unsubscribeAll: Subject<unknown> = new Subject<unknown>();
+  private _fb = inject(FormBuilder);
 
   userId!: string;
   userResults$!: Observable<Results | undefined>;
@@ -75,7 +78,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.resultsForm = this._resultsService.generateResultsForm();
+    this.resultsForm = this.generateResultsForm();
 
     this.userResults$ = this._store.select(AuthState.uid).pipe(
       tap(id => {
@@ -103,8 +106,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
                   const resultsArr = this.results;
                   if ((resultsArr.value as []).length === 0) {
                     userResults.results.forEach(() => {
-                      this.resultsGroup =
-                        this._resultsService.getResultsGroup();
+                      this.resultsGroup = this.getResultsGroup();
                       resultsArr.push(this.resultsGroup);
                     });
                   }
@@ -120,8 +122,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
                     (resultsArr.value as []).length === 0
                   ) {
                     games.forEach((game, i) => {
-                      this.resultsGroup =
-                        this._resultsService.getResultsGroup();
+                      this.resultsGroup = this.getResultsGroup();
                       resultsArr.push(this.resultsGroup);
                       resultsArr.at(i).patchValue(game);
                       resultsArr.at(i).get('homeScore')?.patchValue(null);
@@ -144,32 +145,36 @@ export class MyResultsComponent implements OnInit, OnDestroy {
 
   subscribeToActions(): void {
     this.actions$
-      .pipe(ofActionCompleted(Create, Update), takeUntil(this._unsubscribeAll))
-      .subscribe(result => {
-        const { error, successful } = result.result;
-        const { action } = result;
-        let message;
+      .pipe(
+        ofActionCompleted(Create, Update),
+        takeUntil(this._unsubscribeAll),
+        tap(result => {
+          const { error, successful } = result.result;
+          const { action } = result;
+          let message;
 
-        this._cdr.markForCheck();
-        if (error) {
-          this._toast.error(error.message, {
-            duration: 4000,
-            position: 'bottom-center',
-          });
-        }
-        if (successful) {
-          if (action instanceof Create) {
-            message = 'Resultados agregados exitosamente.';
+          this._cdr.markForCheck();
+          if (error) {
+            this._toast.error(error.message, {
+              duration: 4000,
+              position: 'bottom-center',
+            });
           }
-          if (action instanceof Update) {
-            message = 'Resultados actualizados exitosamente.';
+          if (successful) {
+            if (action instanceof Create) {
+              message = 'Resultados agregados exitosamente.';
+            }
+            if (action instanceof Update) {
+              message = 'Resultados actualizados exitosamente.';
+            }
+            this._toast.success(message, {
+              duration: 4000,
+              position: 'bottom-center',
+            });
           }
-          this._toast.success(message, {
-            duration: 4000,
-            position: 'bottom-center',
-          });
-        }
-      });
+        })
+      )
+      .subscribe();
   }
 
   create(): void {
@@ -229,6 +234,31 @@ export class MyResultsComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
+
+  generateResultsForm(): FormGroup {
+    const resultsForm = this._fb.group({
+      id: [Validators.required],
+      userId: ['', Validators.required],
+      generationDate: [DateTime.now().toLocal().toJSDate()],
+      results: this._fb.array([]),
+      updateDate: [DateTime.now().toLocal().toJSDate()],
+      displayName: ['', Validators.required],
+    });
+
+    return resultsForm;
+  }
+
+  getResultsGroup(): FormGroup {
+    return this._fb.group({
+      id: [null, Validators.required],
+      homeTeamId: [null, Validators.required],
+      awayTeamId: [null, Validators.required],
+      homeScore: [null, Validators.required],
+      awayScore: [null, Validators.required],
+      matchDay: [Validators.required],
+      goldenBall: [false],
+    });
   }
 
   ngOnDestroy(): void {

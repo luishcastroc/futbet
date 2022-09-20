@@ -8,12 +8,11 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { Navigate } from '@ngxs/router-plugin';
-import { Actions, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { map, Observable, switchMap } from 'rxjs';
 
 import { Game, Results } from '../../core';
@@ -34,7 +33,6 @@ import {
     MatProgressSpinnerModule,
     MatIconModule,
     MatSelectModule,
-    MatFormFieldModule,
     FormsModule,
     MatButtonModule,
     MatIconModule,
@@ -45,7 +43,6 @@ import {
 })
 export class ResultsComponent implements OnInit, OnDestroy {
   private _store = inject(Store);
-  private actions$ = inject(Actions);
   results$!: Observable<Results[]>;
   games$!: Observable<Game[]>;
   displayName$!: Observable<string | undefined>;

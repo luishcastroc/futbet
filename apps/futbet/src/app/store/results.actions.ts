@@ -39,3 +39,11 @@ export class ClearUserResults {
 export class GetAllUsers {
   static type = '[User] GetAllUsers';
 }
+
+export class GenerateRanking {
+  static type = '[Ranking] GenerateRanking';
+}
+
+export class ClearRanking {
+  public static readonly type = '[Ranking] ClearRanking';
+}

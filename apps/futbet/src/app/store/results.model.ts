@@ -1,9 +1,10 @@
-import { FutBetUser, Game, Results, UserPoints } from '../core/result.model';
+import { Ranking } from '../core';
+import { FutBetUser, Game, Results } from '../core/result.model';
 
 export interface ResultsStateModel {
   userResults: Results | undefined;
   results: Results[];
-  ranking: UserPoints[];
+  ranking: Ranking[];
   games: Game[];
   users: FutBetUser[];
 }

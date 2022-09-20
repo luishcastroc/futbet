@@ -1,39 +1,12 @@
-import { inject, Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DateTime } from 'luxon';
+import { Injectable } from '@angular/core';
+import { FormArray } from '@angular/forms';
+
 import { Game, GameStatuses, Ranking, Results } from '../core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResultsService {
-  private _fb = inject(FormBuilder);
-
-  generateResultsForm(): FormGroup {
-    const resultsForm = this._fb.group({
-      id: [Validators.required],
-      userId: ['', Validators.required],
-      generationDate: [DateTime.now().toLocal().toJSDate()],
-      results: this._fb.array([]),
-      updateDate: [DateTime.now().toLocal().toJSDate()],
-      displayName: ['', Validators.required],
-    });
-
-    return resultsForm;
-  }
-
-  getResultsGroup(): FormGroup {
-    return this._fb.group({
-      id: [null, Validators.required],
-      homeTeamId: [null, Validators.required],
-      awayTeamId: [null, Validators.required],
-      homeScore: [null, Validators.required],
-      awayScore: [null, Validators.required],
-      matchDay: [Validators.required],
-      goldenBall: [false],
-    });
-  }
-
   checkGoldenBall(results: FormArray): string | undefined {
     let message;
     const golden = [];
@@ -89,7 +62,7 @@ export class ResultsService {
             gamesToCompare[i].homeScore > gamesToCompare[i].awayScore) ||
             (curr.homeScore < curr.awayScore &&
               gamesToCompare[i].homeScore < gamesToCompare[i].awayScore) ||
-            (curr.homeScore === curr.awayScore &&
+            (curr.homeScore === curr.homeScore &&
               gamesToCompare[i].homeScore === gamesToCompare[i].awayScore): {
             if (curr.goldenBall) {
               prev += 2;

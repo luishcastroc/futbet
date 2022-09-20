@@ -7,23 +7,22 @@ import {
   NgxsFirestoreConnect,
   StreamEmitted,
 } from '@ngxs-labs/firestore-plugin';
-import {
-  Action,
-  NgxsOnInit,
-  Selector,
-  State,
-  StateContext,
-  Store,
-} from '@ngxs/store';
-import { tap, throwError } from 'rxjs';
+import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
+import { of, tap, throwError } from 'rxjs';
 
 import { Game, Results, UsersFirestoreService } from '../core';
 import { User } from '../core/auth/user.model';
-import { GamesFirestoreService, ResultsFirestoreService } from '../services';
 import {
+  GamesFirestoreService,
+  ResultsFirestoreService,
+  ResultsService,
+} from '../services';
+import {
+  ClearRanking,
   ClearResultsState,
   ClearUserResults,
   Create,
+  GenerateRanking,
   GetAll,
   GetAllGames,
   GetAllUsers,
@@ -50,7 +49,7 @@ export class ResultsState implements NgxsOnInit {
   private usersFs = inject(UsersFirestoreService);
   private ngxsFirestoreConnect = inject(NgxsFirestoreConnect);
   private afs = inject(AngularFirestore);
-  private _store = inject(Store);
+  private _rs = inject(ResultsService);
 
   @Selector() static results(state: ResultsStateModel) {
     return state.results;
@@ -186,6 +185,18 @@ export class ResultsState implements NgxsOnInit {
     );
   }
 
+  @Action(GenerateRanking)
+  generateRanking({ getState, patchState }: StateContext<ResultsStateModel>) {
+    const { games, results } = getState();
+    return of(this._rs.generateRanking(games, results)).pipe(
+      tap(ranking => {
+        if (ranking.length > 0) {
+          patchState({ ranking });
+        }
+      })
+    );
+  }
+
   @Action(ClearResultsState)
   clearResultsState({ patchState }: StateContext<ResultsStateModel>) {
     patchState({ games: [], ranking: [], results: [], userResults: undefined });
@@ -194,5 +205,10 @@ export class ResultsState implements NgxsOnInit {
   @Action(ClearUserResults)
   clearUserResults({ patchState }: StateContext<ResultsStateModel>) {
     patchState({ userResults: undefined });
+  }
+
+  @Action(ClearRanking)
+  clearRanking({ patchState }: StateContext<ResultsStateModel>) {
+    patchState({ ranking: [] });
   }
 }
