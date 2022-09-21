@@ -57,11 +57,11 @@ import {
 export class MyResultsComponent implements OnInit, OnDestroy {
   private _store = inject(Store);
   private _resultsService = inject(ResultsService);
-  public actions$ = inject(Actions);
   private _cdr = inject(ChangeDetectorRef);
   private _toast = inject(HotToastService);
   private _unsubscribeAll: Subject<unknown> = new Subject<unknown>();
   private _fb = inject(FormBuilder);
+  public actions$ = inject(Actions);
 
   userId!: string;
   userResults$!: Observable<Results | undefined>;
@@ -72,6 +72,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   resultsGroup!: FormGroup;
   dateBeforeWc = this.today < this.wcDate;
   edit = false;
+  loading = false;
 
   get results() {
     return this.resultsForm.get('results') as FormArray;
@@ -149,6 +150,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
         ofActionCompleted(Create, Update),
         takeUntil(this._unsubscribeAll),
         tap(result => {
+          this.loading = false;
           const { error, successful } = result.result;
           const { action } = result;
           let message;
@@ -186,6 +188,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
         icon: '❎',
       });
     } else {
+      this.loading = true;
       const results = this.resultsForm.value as Results;
       delete results.id;
       this._store.dispatch(new Create(results));
@@ -193,6 +196,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   }
 
   update(): void {
+    this.loading = true;
     this._store.dispatch(new Update(this.resultsForm.value));
   }
 

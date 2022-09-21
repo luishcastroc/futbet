@@ -9,7 +9,7 @@ export const routes: Route[] = [
     canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/login/login.component').then(
-        (com) => com.LoginComponent
+        com => com.LoginComponent
       ),
   },
   {
@@ -17,7 +17,7 @@ export const routes: Route[] = [
     canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/register/register.component').then(
-        (com) => com.RegisterComponent
+        com => com.RegisterComponent
       ),
   },
   {
@@ -25,7 +25,7 @@ export const routes: Route[] = [
     canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/forgot-password/forgot-password.component').then(
-        (com) => com.ForgotPasswordComponent
+        com => com.ForgotPasswordComponent
       ),
   },
   {
@@ -33,7 +33,15 @@ export const routes: Route[] = [
     canActivate: [noAuthGuard],
     loadComponent: () =>
       import('./components/verify-email/verify-email.component').then(
-        (com) => com.VerifyEmailComponent
+        com => com.VerifyEmailComponent
+      ),
+  },
+  {
+    path: 'verify',
+    canActivate: [noAuthGuard],
+    loadComponent: () =>
+      import('./components/confirm/confirm.component').then(
+        com => com.ConfirmComponent
       ),
   },
   {
@@ -41,14 +49,14 @@ export const routes: Route[] = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./components/dashboard/dashboard.routes').then(
-        (chl) => chl.dashboardRoutes
+        chl => chl.dashboardRoutes
       ),
   },
   {
     path: 'not-found',
     loadComponent: () =>
       import('./components/not-found/not-found.component').then(
-        (com) => com.NotFoundComponent
+        com => com.NotFoundComponent
       ),
   },
   {

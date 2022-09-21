@@ -1,1 +1,13 @@
-<p>confirm works!</p>
+<div class="flex-auto flex">
+  <ng-container [ngSwitch]="mode">
+    <!-- password reset -->
+    <ng-container *ngSwitchCase="'resetPassword'">
+      <futbet-confirm-password-reset
+        class="flex-auto flex"
+        [code]="code"></futbet-confirm-password-reset
+    ></ng-container>
+
+    <!-- verify email address -->
+    <ng-container *ngSwitchCase="'verifyEmail'"> verify email </ng-container>
+  </ng-container>
+</div>

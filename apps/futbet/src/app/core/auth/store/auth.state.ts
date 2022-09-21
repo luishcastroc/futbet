@@ -16,12 +16,14 @@ import { tap } from 'rxjs';
 import { ClearResultsState } from '../../../store/results.actions';
 import { UsersFirestoreService } from '../services/firebase-users.service';
 import {
+  ConfirmPasswordReset,
   CreateUserInStore,
   CreateUserWithEmailAndPassword,
   GetAuthState,
   LoginWithEmailAndPassword,
   LoginWithGoogle,
   Logout,
+  PasswordReset,
 } from './auth.actions';
 import { AuthStateModel } from './auth.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -156,6 +158,22 @@ export class AuthState implements NgxsOnInit {
           ctx.dispatch(new Navigate(['/dashboard']));
         }
       });
+  }
+
+  @Action(PasswordReset)
+  async PasswordReset(
+    ctx: StateContext<AuthStateModel>,
+    { email }: PasswordReset
+  ) {
+    await this.afAuth.sendPasswordResetEmail(email);
+  }
+
+  @Action(ConfirmPasswordReset)
+  async confirmPasswordReset(
+    ctx: StateContext<AuthStateModel>,
+    { password, code }: ConfirmPasswordReset
+  ) {
+    await this.afAuth.confirmPasswordReset(code, password);
   }
 
   @Action(CreateUserWithEmailAndPassword)

@@ -26,6 +26,16 @@ export class Logout {
   static type = '[Auth] Logout';
 }
 
+export class PasswordReset {
+  static type = '[Auth] PasswordReset';
+  constructor(public email: string) {}
+}
+
+export class ConfirmPasswordReset {
+  static type = '[Auth] ConfirmPasswordReset';
+  constructor(public password: string, public code: string) {}
+}
+
 export class CreateUserInStore {
   static type = '[Auth] CreateUserInStore';
   constructor(public payload: Partial<User>) {}
