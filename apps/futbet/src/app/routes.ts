@@ -29,14 +29,6 @@ export const routes: Route[] = [
       ),
   },
   {
-    path: 'verify-email',
-    canActivate: [noAuthGuard],
-    loadComponent: () =>
-      import('./components/verify-email/verify-email.component').then(
-        com => com.VerifyEmailComponent
-      ),
-  },
-  {
     path: 'verify',
     canActivate: [noAuthGuard],
     loadComponent: () =>
