@@ -62,7 +62,7 @@ export class ResultsService {
             gamesToCompare[i].homeScore > gamesToCompare[i].awayScore) ||
             (curr.homeScore < curr.awayScore &&
               gamesToCompare[i].homeScore < gamesToCompare[i].awayScore) ||
-            (curr.homeScore === curr.homeScore &&
+            (curr.homeScore === curr.awayScore &&
               gamesToCompare[i].homeScore === gamesToCompare[i].awayScore): {
             if (curr.goldenBall) {
               prev += 2;
