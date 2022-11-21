@@ -28,13 +28,13 @@ export class GamesComponent implements OnInit {
       this._store.select(AuthState.loggedIn),
     ]).pipe(
       map(([games, loggedIn]) => {
-        if (loggedIn) {
-          if (games && games.length === 0) {
-            worldCupGames.forEach(wcG => {
-              this._store.dispatch(new SeedGames(wcG));
-            });
-          }
-        }
+        // if (loggedIn) {
+        //   if (games && games.length === 0) {
+        //     worldCupGames.forEach(wcG => {
+        //       this._store.dispatch(new SeedGames(wcG));
+        //     });
+        //   }
+        // }
         return games;
       })
     );
