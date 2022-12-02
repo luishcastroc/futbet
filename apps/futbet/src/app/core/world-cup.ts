@@ -768,3 +768,126 @@ export const worldCupGames = [
     matchDay: 12,
   },
 ];
+
+export const worldCupGamesBestSixteen = [
+  {
+    id: 49,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 4,
+    awayTeamId: 7,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Países Bajos',
+    awayTeamEs: 'U.S.A.',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/125px-Flag_of_the_Netherlands.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png',
+    matchDay: 13,
+  },
+  {
+    id: 50,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 9,
+    awayTeamId: 6,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Argentina',
+    awayTeamEs: 'Australia',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/125px-Flag_of_Argentina.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/125px-Flag_of_Australia_%28converted%29.svg.png',
+    matchDay: 13,
+  },
+  {
+    id: 51,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 15,
+    awayTeamId: 14,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Francia',
+    awayTeamEs: 'Polonia',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/125px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/125px-Flag_of_Poland.svg.png',
+    matchDay: 14,
+  },
+  {
+    id: 52,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 5,
+    awayTeamId: 3,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Inglaterra',
+    awayTeamEs: 'Senegal',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/125px-Flag_of_England.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/125px-Flag_of_Senegal.svg.png',
+    matchDay: 14,
+  },
+  {
+    id: 53,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 20,
+    awayTeamId: 18,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Japón',
+    awayTeamEs: 'Croacia',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/125px-Flag_of_Japan.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/125px-Flag_of_Croatia.svg.png',
+    matchDay: 15,
+  },
+  {
+    id: 54,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 25,
+    awayTeamId: 30,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Brasil',
+    awayTeamEs: 'Korea del Sur',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/125px-Flag_of_South_Korea.svg.png',
+    matchDay: 15,
+  },
+  {
+    id: 55,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 17,
+    awayTeamId: 21,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Marruecos',
+    awayTeamEs: 'España',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/125px-Flag_of_Morocco.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png',
+    matchDay: 16,
+  },
+  {
+    id: 56,
+    gameStatus: 'NOT STARTED',
+    homeTeamId: 27,
+    awayTeamId: 31,
+    homeScore: 0,
+    awayScore: 0,
+    homeTeamEs: 'Portugal',
+    awayTeamEs: 'Suiza',
+    homeFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/125px-Flag_of_Portugal.svg.png',
+    awayFlag:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/100px-Flag_of_Switzerland.svg.png',
+    matchDay: 16,
+  },
+];

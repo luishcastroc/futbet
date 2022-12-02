@@ -18,7 +18,7 @@ export enum GameStatuses {
 
 export interface Game {
   id: number;
-  group: string;
+  group?: string;
   homeTeamId: number;
   awayTeamId: number;
   homeScore: number;

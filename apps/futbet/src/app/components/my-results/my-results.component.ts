@@ -68,6 +68,7 @@ export class MyResultsComponent implements OnInit, OnDestroy {
   games: Game[] = [];
   today = DateTime.now().toLocal();
   wcDate = DateTime.fromISO('2022-11-20'); //world cup starts on 2022-11-20
+  wcEightDate = DateTime.fromISO('2022-12-03'); //world cup starts on 2022-11-20
   resultsForm!: FormGroup;
   resultsGroup!: FormGroup;
   dateBeforeWc = this.today < this.wcDate;
@@ -103,21 +104,40 @@ export class MyResultsComponent implements OnInit, OnDestroy {
             this._store.select(ResultsState.games).pipe(
               map(games => {
                 this.games = games;
+                const resultsArr = this.results;
                 if (userResults) {
-                  const resultsArr = this.results;
                   if ((resultsArr.value as []).length === 0) {
-                    userResults.results.forEach(() => {
+                    userResults.results.forEach((el, i) => {
                       this.resultsGroup = this.getResultsGroup();
                       resultsArr.push(this.resultsGroup);
+                      if (i < 48 && this.today >= this.wcDate) {
+                        resultsArr.at(i).disable();
+                      } else if (i > 47 && this.today >= this.wcEightDate) {
+                        resultsArr.at(i).disable();
+                      }
                     });
+                    if (userResults.results.length !== games.length) {
+                      for (
+                        let i = userResults.results.length;
+                        i < games.length;
+                        i++
+                      ) {
+                        this.resultsGroup = this.getResultsGroup();
+                        resultsArr.push(this.resultsGroup);
+                        if (i < 48 && this.today >= this.wcDate) {
+                          resultsArr.at(i).disable();
+                        } else if (i > 47 && this.today >= this.wcEightDate) {
+                          resultsArr.at(i).disable();
+                        }
+                        resultsArr.at(i).patchValue(games[i]);
+                        resultsArr.at(i).get('homeScore')?.patchValue(null);
+                        resultsArr.at(i).get('awayScore')?.patchValue(null);
+                      }
+                    }
                   }
                   this.resultsForm.patchValue(userResults);
                   this.edit = true;
-                  if (this.today >= this.wcDate) {
-                    this.resultsForm.disable();
-                  }
                 } else {
-                  const resultsArr = this.results;
                   if (
                     games.length > 0 &&
                     (resultsArr.value as []).length === 0
@@ -125,6 +145,11 @@ export class MyResultsComponent implements OnInit, OnDestroy {
                     games.forEach((game, i) => {
                       this.resultsGroup = this.getResultsGroup();
                       resultsArr.push(this.resultsGroup);
+                      if (i < 48 && this.today >= this.wcDate) {
+                        resultsArr.at(i).disable();
+                      } else if (i > 47 && this.today >= this.wcEightDate) {
+                        resultsArr.at(i).disable();
+                      }
                       resultsArr.at(i).patchValue(game);
                       resultsArr.at(i).get('homeScore')?.patchValue(null);
                       resultsArr.at(i).get('awayScore')?.patchValue(null);

@@ -4,8 +4,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Store } from '@ngxs/store';
 import { combineLatest, map, Observable } from 'rxjs';
 
-import { AuthState, Game, worldCupGames } from '../../core';
-import { GetAllGames, ResultsState, SeedGames } from '../../store';
+import { AuthState, Game } from '../../core';
+import { GetAllGames, ResultsState } from '../../store';
 
 @Component({
   selector: 'futbet-games',
@@ -28,13 +28,6 @@ export class GamesComponent implements OnInit {
       this._store.select(AuthState.loggedIn),
     ]).pipe(
       map(([games, loggedIn]) => {
-        // if (loggedIn) {
-        //   if (games && games.length === 0) {
-        //     worldCupGames.forEach(wcG => {
-        //       this._store.dispatch(new SeedGames(wcG));
-        //     });
-        //   }
-        // }
         return games;
       })
     );
